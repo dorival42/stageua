@@ -12,6 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 ```{r}
 library(dplyr)
+#install.packages("viridis")
+library(viridis)
+install.packages("RColorBrewer")
+library(RColorBrewer)
+
 ```
 
 ```{r}
@@ -115,11 +120,44 @@ nlle_table
 ```
 
 ```{r}
-# Convertir la colonne string en type numérique
-#new_db_chlordecone$Taux_chlordecone <- as.numeric(new_db_chlordecone$Taux_chlordecone)
+# Analyse statistiques
 
-nb_na <- sum(is.na(new_db_chlordecone$Taux_chlordecone))
-nb_na 
+
+data_commu <- new_db_chlordecone[, c("COMMU_LAB", "Taux_chlordecone")]
+
+# Agrégation des données par commune (calcul de la moyenne)
+mean_commu <- aggregate(Taux_chlordecone ~ COMMU_LAB, data = data_commu, FUN = mean)
+
+
+
+# Génération de 35 couleurs distinctes à partir de la palette
+couleurs <- rainbow(35)
+# Création du graphique (exemple avec un diagramme en barres)
+barplot(mean_commu$Taux_chlordecone, 
+        names.arg = mean_commu$COMMU_LAB, 
+        col = couleurs, # Utilisation des couleurs variables
+        xlab = "Commune", 
+        ylab = "Taux moyen de chlordecone",
+        main = "Répartition des taux de chlordecone par commune")
+
+legend("topright", 
+       legend = mean_commu$COMMU_LAB, 
+       fill = couleurs, 
+       title = "Communes",
+       text.col = "black",   
+       cex = 0.1) 
+```
+```{r}
+unique(new_db_chlordecone$COMMU_LAB)
 ```
 
+```{r}
+# Création du graphique boxplot avec les données des taux de chlordecone par commune
+boxplot(Taux_chlordecone ~ COMMU_LAB, data = data_commu, 
+        xlab = "Commune", 
+        ylab = "Taux de chlordecone",
+        main = "Répartition des taux de chlordecone par commune")
+
+
+```
 
