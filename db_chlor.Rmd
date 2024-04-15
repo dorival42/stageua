@@ -74,11 +74,26 @@ new_db_chlor
 
 ```
 ```{r}
+colnames(new_db_chlor)[colnames(new_db_chlor) == "pluviom\xe9trie_moyenne_annuelle"] <- "pluviometrie_moyenne_annuelle"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_mean"] <- "mnt.rugosite_mean"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_median"] <- "mnt.rugosite_median"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_stdev"] <- "mnt.rugosite_stdev"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_min"] <- "mnt.rugosite_min"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_max"] <- "mnt.rugosite_max"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_minority"] <- "mnt.rugosite_minority"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_majority"] <- "mnt.rugosite_majority"
+
+colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_variance"] <- "mnt.rugosite_variance"
+colnames(new_db_chlor)[colnames(new_db_chlor) == "Ann\xe9e"] <- "Annee"
+
+# Écrire les données modifiées dans un nouveau fichier CSV
+write.csv(new_db_chlor, "new_db_chlordecone.csv", row.names = FALSE)
+
 colnames(new_db_chlor)
 ```
 ```{r}
 
-nlle_table <- new_db_chlor[, c("ANNEE", "COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Taux_chlordecone")] 
+nlle_table <- new_db_chlordecone[, c("ANNEE", "COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Taux_chlordecone")] 
 
 #nlle_table$mnt.ombrage_mean <- as.numeric(nlle_table$mnt.ombrage_mean)
 head(nlle_table)
@@ -86,4 +101,6 @@ head(nlle_table)
 
 
 ```
+
+
 
