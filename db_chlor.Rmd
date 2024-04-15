@@ -14,8 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 #install.packages("viridis")
 library(viridis)
-install.packages("RColorBrewer")
+#install.packages("RColorBrewer")
 library(RColorBrewer)
+install.packages("fmsb")
+library(fmsb)
 
 ```
 
@@ -159,5 +161,20 @@ boxplot(Taux_chlordecone ~ COMMU_LAB, data = data_commu,
         main = "Répartition des taux de chlordecone par commune")
 
 
+```
+```{r}
+pie(mean_commu$Taux_chlordecone, 
+    labels = mean_commu$COMMU_LAB,
+    main = "Répartition des taux de chlordecone par commune")
+```
+        
+
+
+
+```{r}
+hist(mean_commu$Taux_chlordecone, 
+     xlab = "Taux de chlordecone",
+     ylab = "Fréquence",
+     main = "Distribution des taux de chlordecone")
 ```
 
