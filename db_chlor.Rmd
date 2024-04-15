@@ -52,6 +52,7 @@ colnames(db_chlor)
 ```
 ```{r}
 db_chlor$COMMU_LAB[is.na(db_chlor$COMMU_LAB)] <- "COMMU_UN"
+db_chlor <- subset(db_chlor, COMMU_LAB != "COMMU_UN")
 supprimer_colonnes_na <- function(data) {
   # Identifier les colonnes avec au moins une valeur NA
   colonnes_a_supprimer <- names(data)[apply(data, 2, function(x) any(is.na(x)))]
@@ -68,7 +69,8 @@ new_db_chlor <- supprimer_colonnes_na(db_chlor)
 
 
 # Afficher les premières lignes des données après suppression des colonnes
-head(new_db_chlor)
+new_db_chlor
+
 
 ```
 ```{r}
