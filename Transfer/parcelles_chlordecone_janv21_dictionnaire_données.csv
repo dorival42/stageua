@@ -1,0 +1,160 @@
+colonne;Fichier d’origine;terme anglais;explication;;
+ID;parcelle chlordécone;;;;
+ORIGINE;parcelle chlordécone;;;;
+PARC_CAD;parcelle chlordécone;;;;
+PROFOND;parcelle chlordécone;;;;
+ANNEE;parcelle chlordécone;;;;
+COMMU_LAB;parcelle chlordécone;;;;
+NUMERO_SIG;parcelle chlordécone;;;;
+Positionne;parcelle chlordécone;;;;
+RPG19_COD;parcelle chlordécone;;;;
+ocs_gid;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_id;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_code_cs;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_code_us;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_millesime;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_source;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_ossature;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_id_origine;Occupation_du_sol_en_Martinique_en_2017;;;;
+ocs_code_or;Occupation_du_sol_en_Martinique_en_2017;;;;
+formationvegetales_gid;Occupation_du_sol_en_Martinique_en_2017;;;;
+formationvegetales_tfv;Formations_Vegetales_2017_de_la_Martinique;;;;
+formationvegetales_theme;Formations_Vegetales_2017_de_la_Martinique;;;;
+formationvegetales_libelle;Formations_Vegetales_2017_de_la_Martinique;;;;
+pluviométrie_moyenne_annuelle;données reprises d'une carte fournie;;Pluviométrie moyenne annuelle ;;
+sol.simple_OBJECTID;mtq_sol_20000_simple;;;;
+sol.simple_ENSEMBLECD;mtq_sol_20000_simple;;;;
+sol.simple_SOUSENSV;mtq_sol_20000_simple;;;;
+sol.simple_FACIESCD;mtq_sol_20000_simple;;;;
+sol.simple_SSFACIESCD;mtq_sol_20000_simple;;;;
+sol.simple_COMPLEXECD;mtq_sol_20000_simple;;;;
+sol.simple_TENDANCE;mtq_sol_20000_simple;;;;
+sol.simple_OID_;mtq_sol_20000_simple;;;;
+sol.simple_SYMBOLE;mtq_sol_20000_simple;;;;
+sol.simple_TYPE_DE_SO;mtq_sol_20000_simple;;;;
+sol.complexe_OBJECTID;mtq_sol_20000;;;;
+sol.complexe_ENSEMBLECD;mtq_sol_20000;;;;
+sol.complexe_SOUSENSV;mtq_sol_20000;;;;
+sol.complexe_FACIESCD;mtq_sol_20000;;;;
+sol.complexe_SSFACIESCD;mtq_sol_20000;;;;
+sol.complexe_VARIANTECD;mtq_sol_20000;;;;
+sol.complexe_ASSOCD;mtq_sol_20000;;;;
+sol.complexe_COMPLEXECD;mtq_sol_20000;;;;
+sol.complexe_TENDANCE;mtq_sol_20000;;;;
+mnt.exposition_mean;Modèle Numérique de Terrain : Exposition;;L’aspect est la direction de la boussole à laquelle fait face une pente. Les pixels auront une valeur de 0 à 360 ° mesurée en degrés par rapport au nord indiquant l’azimut. Sur l’hémisphère nord, le côté nord des pentes est souvent ombragé (petit azimut de 0 ° à 90 °), tandis que le côté sud reçoit plus de rayonnement solaire (azimut plus élevé de 180 ° à 270 °).;;
+mnt.exposition_median;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_stdev;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_min;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_max;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_minority;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_majority;Modèle Numérique de Terrain : Exposition;;;;
+mnt.exposition_variance;Modèle Numérique de Terrain : Exposition;;;;
+mnt.ombrage_mean;Modèle Numérique de Terrain : Ombrage;Hillshade;Zones plus lumineuses et celles plus ombragées;;
+mnt.ombrage_median;;;;;
+mnt.ombrage_stdev;;;;;
+mnt.ombrage_min;;;;;
+mnt.ombrage_max;;;;;
+mnt.ombrage_minority;;;;;
+mnt.ombrage_majority;;;;;
+mnt.ombrage_variance;;;;;
+mnt.pente_mean;Modèle Numérique de Terrain : Pente;Slope;La pente est l’angle d’inclinaison par rapport à l’horizontale, exprimé ici en pourcentage;;
+mnt.pente_median;;;;;
+mnt.pente_stdev;;;;;
+mnt.pente_min;;;;;
+mnt.pente_max;;;;;
+mnt.pente_minority;;;;;
+mnt.pente_majority;;;;;
+mnt.pente_variance;;;;;
+mnt.rugosité_mean;Modèle Numérique de Terrain : Rugosité;Roughness;La rugosité est le degré d’irrégularité de la surface;;
+mnt.rugosité_median;;;;;
+mnt.rugosité_stdev;;;;;
+mnt.rugosité_min;;;;;
+mnt.rugosité_max;;;;;
+mnt.rugosité_minority;;;;;
+mnt.rugosité_majority;;;;;
+mnt.rugosité_variance;;;;;
+mnt.tpi_mean;Modèle Numérique de Terrain : Indice de position topographique;TPI;Permet d’identifier des formes de relief et des ruptures topographiques. Identification des zones surélevées par rapport aux voisinages, les valeurs négatives des zones encaissées, les valeurs proches de zéro, des zones planes ou à pente constante;;
+mnt.tpi_median;;;;;
+mnt.tpi_stdev;;;;;
+mnt.tpi_min;;;;;
+mnt.tpi_max;;;;;
+mnt.tpi_minority;;;;;
+mnt.tpi_majority;;;;;
+mnt.tpi_variance;;;;;
+mnt.tri_mean;Modèle Numérique de Terrain : Indice de rugosité du terrain;TRI; Hétérogénéité topographique : Valeurs fortement corrélées à la pente, faibles dans les zones planes et fortes dans les zones à fort dénivelé. ;;
+mnt.tri_median;;;;;
+mnt.tri_stdev;;;;;
+mnt.tri_min;;;;;
+mnt.tri_max;;;;;
+mnt.tri_minority;;;;;
+mnt.tri_majority;;;;;
+mnt.tri_variance;;;;;
+surface.parcelle_m2;surface parcelle en m²;;;;
+type_sol;type de sol;;;;
+Date_prelevement;parcelle chlordécone;;;;
+Année;parcelle chlordécone;;;;
+Numero_sig;parcelle chlordécone;;;;
+Origine_donnee;parcelle chlordécone;;;;
+Interet;parcelle chlordécone;;;;
+Date_enregistrement;parcelle chlordécone;;;;
+Adresse_parcelle;parcelle chlordécone;;;;
+Code_insee_parcelle;parcelle chlordécone;;;;
+Parcelle_cadastrale;parcelle chlordécone;;;;
+Laboratoire;parcelle chlordécone;;;;
+Methode_prelevement;parcelle chlordécone;;;;
+Profondeur_prelevement;parcelle chlordécone;;;;
+Date_analyse;parcelle chlordécone;;;;
+Operateur_chld;parcelle chlordécone;;;;
+Taux_chlordecone;parcelle chlordécone;;;;
+Operateur_5b;parcelle chlordécone;;;;
+Taux_5b_hydro;parcelle chlordécone;;;;
+;;;;;
+;;;;;
+;;;;;
+PROFONDEUR PRELEVEMENT;;;;;
+ID;TRANCHE;;;NUMERO_INSEE;COMMUNE
+1;Non concerné;;;97201;AJOUPA BOUILLON
+2;0 à 30 cm;;;97202;ANSES-D'ARLET(LES)
+3;30 à 60 cm;;;97203;BASSE-POINTE
+4;0 à 40 cm;;;97234;BELLEFONTAINE
+5;0 à 60 cm;;;97204;CARBET(LE)
+;;;;97205;CASE-PILOTE
+ORIGINE DONNEE;;;;97206;DIAMANT(LE)
+ID;ORIGINE;;;97207;DUCOS
+1;CIRAD;;;97208;FONDS-SAINT-DENIS
+2;BRGM;;;97209;FORT-DE-FRANCE
+3;Chambre Agriculture;;;97210;FRANCOIS(LE)
+4;Fredon;;;97211;GRAND'RIVIERE
+5;DAAF-SALIM;;;97212;GROS-MORNE
+6;ARS;;;97998;Hors Martinique
+;;;;97213;LAMENTIN(LE)
+INTERET;;;;97214;LORRAIN(LE)
+ID;VALEUR;;;97215;MACOUBA
+1;Etude du transfert de la chlordécone;;;97216;MARIGOT(LE)
+2;JAFA - ARS;;;97217;MARIN(LE)
+3;auto-contrôle Agriculteurs avec CRA 972;;;97218;MORNE-ROUGE(LE)
+4;JAFA - CIRAD;;;97233;MORNE-VERT(LE)
+5;Projet ALUR (DGPR);;;97999;Non Indiqué
+;;;;97219;PRECHEUR(LE)
+METHODE PRELEVEMENT;;;;97220;RIVIERE-PILOTE
+ID;Methode_PRELEV;;;97221;RIVIERE-SALEE
+1;Méthode en L;;;97222;ROBERT(LE)
+2;Méthode systématique alignée;;;97226;SAINTE-ANNE
+3;Prélevement aux 4 point cardinaux autour du plan;;;97227;SAINTE-LUCE
+4;Non Précisé;;;97228;SAINTE-MARIE
+;;;;97223;SAINT-ESPRIT
+;;;;97224;SAINT-JOSEPH
+;;;;97225;SAINT-PIERRE
+;;;;97229;SCHOELCHER
+;;;;97230;TRINITE(LA)
+;;;;97231;TROIS-ILETS(LES)
+;;;;97232;VAUCLIN(LE)
+LABORATOIRE;;;;;
+ID;NOM_LABO;SEUIL_QUANTIFICATION;SEUIL_DETECTION;METHODE_EXTRACTION;SEUIL_PRECISION
+1;BRGM-MMA;0,03 mg/kg;0,01 mg/kg;;
+2;LTA 972;0,01 mg/kg;0,0033 mg/kg;;30%
+5;GIRPA;0,01 mg/kg;0,0033 mg/kg;;
+6;NON PRECISE;;;;
+7;LDA 971;0,01 mg/kg;0,001 mg/kg;;
+8;LDA 26;0,005 mg/kg;0,001 mg/kg;;
+9;CARSO;0,001mg/kg;0,0005mg/kg;;

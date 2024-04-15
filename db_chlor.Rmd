@@ -1,0 +1,87 @@
+---
+title: "Untitled"
+author: "Pierre Chrislin DORIVAL"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+library(dplyr)
+```
+
+```{r}
+db_chlor = parcelles_chlordecone_janv21
+db_chlor
+```
+```{r}
+db_chlor = parcelles_chlordecone_janv21
+# Extraire la première ligne comme noms de colonnes
+noms_colonnes <- as.character(db_chlor[1, ])
+
+# Remplacer les noms de colonnes
+colnames(db_chlor) <- noms_colonnes
+
+# Supprimer la première ligne des données
+db_chlor <- db_chlor[-1, ]
+
+rownames(db_chlor) <- NULL
+
+# Afficher les premières lignes des données avec les nouveaux noms de colonnes
+head(db_chlor)
+
+```
+```{r}
+# Compter le nombre de valeurs NA dans la colonne COMMU_LAB
+nb_na <- sum(is.na(db_chlor$COMMU_LAB))
+nb_na
+
+
+
+```
+
+
+
+
+```{r}
+colnames(db_chlor)
+```
+```{r}
+db_chlor$COMMU_LAB[is.na(db_chlor$COMMU_LAB)] <- "COMMU_UN"
+supprimer_colonnes_na <- function(data) {
+  # Identifier les colonnes avec au moins une valeur NA
+  colonnes_a_supprimer <- names(data)[apply(data, 2, function(x) any(is.na(x)))]
+  
+  # Supprimer les colonnes identifiées
+  data <- data[, !(names(data) %in% colonnes_a_supprimer)]
+  
+  return(data)
+}
+
+
+
+new_db_chlor <- supprimer_colonnes_na(db_chlor)
+
+
+# Afficher les premières lignes des données après suppression des colonnes
+head(new_db_chlor)
+
+```
+```{r}
+colnames(new_db_chlor)
+```
+```{r}
+
+nlle_table <- new_db_chlor[, c("ANNEE", "COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Taux_chlordecone")] 
+
+#nlle_table$mnt.ombrage_mean <- as.numeric(nlle_table$mnt.ombrage_mean)
+head(nlle_table)
+
+
+
+```
+
