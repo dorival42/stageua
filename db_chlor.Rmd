@@ -86,21 +86,40 @@ colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_majority"] <- 
 colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_variance"] <- "mnt.rugosite_variance"
 colnames(new_db_chlor)[colnames(new_db_chlor) == "Ann\xe9e"] <- "Annee"
 
+# Parcourir les colonnes du dataframe
+for (colonne in colnames(new_db_chlor)) {
+  # Vérifier si la colonne est de type caractère
+  if (class(new_db_chlor$colonne) == "character") {
+    # Remplacer les virgules par des points décimaux dans la colonne
+    new_db_chlor$colonne <- gsub(",", ".", new_db_chlor$colonne)
+  }
+}
+# Remplacer les virgules par des points décimaux dans la colonne 
+new_db_chlor$Taux_chlordecone <- gsub(",", ".", new_db_chlor$Taux_chlordecone)
+
 # Écrire les données modifiées dans un nouveau fichier CSV
 write.csv(new_db_chlor, "new_db_chlordecone.csv", row.names = FALSE)
 
-colnames(new_db_chlor)
+colnames(new_db_chlordecone)
 ```
 ```{r}
 
-nlle_table <- new_db_chlordecone[, c("ANNEE", "COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Taux_chlordecone")] 
+nlle_table <- new_db_chlordecone[, c("COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Date_analyse","Taux_chlordecone")] 
+nlle_table$Taux_chlordecone <- as.numeric(nlle_table$Taux_chlordecone)
 
 #nlle_table$mnt.ombrage_mean <- as.numeric(nlle_table$mnt.ombrage_mean)
-head(nlle_table)
+nlle_table
 
 
 
 ```
 
+```{r}
+# Convertir la colonne string en type numérique
+#new_db_chlordecone$Taux_chlordecone <- as.numeric(new_db_chlordecone$Taux_chlordecone)
+
+nb_na <- sum(is.na(new_db_chlordecone$Taux_chlordecone))
+nb_na 
+```
 
 
