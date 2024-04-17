@@ -81,6 +81,8 @@ new_db_chlor
 
 ```
 ```{r}
+
+# Preparation des donnees
 colnames(new_db_chlor)[colnames(new_db_chlor) == "pluviom\xe9trie_moyenne_annuelle"] <- "pluviometrie_moyenne_annuelle"
 colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_mean"] <- "mnt.rugosite_mean"
 colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_median"] <- "mnt.rugosite_median"
@@ -104,14 +106,34 @@ for (colonne in colnames(new_db_chlor)) {
 # Remplacer les virgules par des points décimaux dans la colonne 
 new_db_chlor$Taux_chlordecone <- gsub(",", ".", new_db_chlor$Taux_chlordecone)
 
+new_db_chlor$pluviometrie_moyenne_annuelle <- gsub("-", "+", new_db_chlor$pluviometrie_moyenne_annuelle)
+
+new_db_chlor <- new_db_chlor[, !colnames(new_db_chlor) %in% c("Numero_sig", "ocs_gid", "ocs_code_us","Adresse_parcelle","ocs_ossature","ocs_id","ocs_code_cs","ocs_millesime","ocs_source","ocs_id_origine","ocs_code_or","Interet","Annee", "Origine_donnee","Code_insee_parcelle","Parcelle_cadastrale","Methode_prelevement")]
+
+# transformer les donnees dans la colonnes pulviometrie
+moyennes <- numeric(length(new_db_chlor$pluviometrie_moyenne_annuelle))
+
+# Diviser chaque valeur et calculer la moyenne
+for(i in 1:length(new_db_chlor$pluviometrie_moyenne_annuelle)) {
+    # Diviser la valeur en deux parties en utilisant le symbole '+'
+    valeurs <- strsplit(new_db_chlor$pluviometrie_moyenne_annuelle[i], "\\+")
+    # Convertir les parties en nombres et calculer la moyenne
+    moyennes[i] <- mean(as.numeric(unlist(valeurs)))
+}
+
+# Ajouter la colonne de moyennes au jeu de données
+new_db_chlor$moyenne_pulviometrie <- moyennes
+
+new_db_chlor <- new_db_chlor[, !colnames(new_db_chlor) %in% c("Numero_sig", "ocs_gid", "ocs_code_us","Adresse_parcelle","ocs_ossature","ocs_id","ocs_code_cs","ocs_millesime","ocs_source","ocs_id_origine","ocs_code_or","Interet","Annee", "Origine_donnee","Code_insee_parcelle","Parcelle_cadastrale","Methode_prelevement", "pluviometrie_moyenne_annuelle")]
+
+
 # Écrire les données modifiées dans un nouveau fichier CSV
 write.csv(new_db_chlor, "new_db_chlordecone.csv", row.names = FALSE)
 
-colnames(new_db_chlordecone)
 ```
 ```{r}
 
-nlle_table <- new_db_chlordecone[, c("COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","surface.parcelle_m2","Date_analyse","Taux_chlordecone")] 
+nlle_table <- new_db_chlordecone[, c("COMMU_LAB", "mnt.exposition_mean", "mnt.ombrage_mean","mnt.tri_mean","mnt.tpi_mean","Taux_chlordecone")] 
 nlle_table$Taux_chlordecone <- as.numeric(nlle_table$Taux_chlordecone)
 
 #nlle_table$mnt.ombrage_mean <- as.numeric(nlle_table$mnt.ombrage_mean)
@@ -165,7 +187,11 @@ boxplot(Taux_chlordecone ~ COMMU_LAB, data = data_commu,
 ```{r}
 pie(mean_commu$Taux_chlordecone, 
     labels = mean_commu$COMMU_LAB,
-    main = "Répartition des taux de chlordecone par commune")
+```
+
+
+```{r}
+main = "Répartition des taux de chlordecone par commune")
 ```
         
 
@@ -176,5 +202,8 @@ hist(mean_commu$Taux_chlordecone,
      xlab = "Taux de chlordecone",
      ylab = "Fréquence",
      main = "Distribution des taux de chlordecone")
+```
+```{r}
+colnames(new_db_chlordecone)
 ```
 
