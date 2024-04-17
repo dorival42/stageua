@@ -106,7 +106,7 @@ for (colonne in colnames(new_db_chlor)) {
 # Remplacer les virgules par des points décimaux dans la colonne 
 new_db_chlor$Taux_chlordecone <- gsub(",", ".", new_db_chlor$Taux_chlordecone)
 
-new_db_chlor$pluviometrie_moyenne_annuelle <- gsub("-", "+", new_db_chlor$pluviometrie_moyenne_annuelle)
+new_db_chlor$pluviometrie_moyenne_annuelle <- gsub("-",  "+",new_db_chlor$pluviometrie_moyenne_annuelle)
 
 new_db_chlor <- new_db_chlor[, !colnames(new_db_chlor) %in% c("Numero_sig", "ocs_gid", "ocs_code_us","Adresse_parcelle","ocs_ossature","ocs_id","ocs_code_cs","ocs_millesime","ocs_source","ocs_id_origine","ocs_code_or","Interet","Annee", "Origine_donnee","Code_insee_parcelle","Parcelle_cadastrale","Methode_prelevement")]
 
