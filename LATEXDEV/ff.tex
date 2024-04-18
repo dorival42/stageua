@@ -1,7 +1,27 @@
-\documentclass{article}
-\usepackage{amsmath} % Pour les formules mathématiques
 
+
+
+
+
+
+
+\documentclass[11pt,twoside,a4paper]{article}
+%=============== En−Tete ===============
+%−−− Insertion de paquetages (optionnel) −−−
+\usepackage[french]{babel} % pour dire que le texte est en fran¸cais
+\usepackage{a4} % pour la taille
+\usepackage[T1]{fontenc} % pour les font postscript
+\usepackage[cyr]{aeguill} % Police vectorielle TrueType, guillemets fran¸cais
+\usepackage{epsfig} % pour g´erer les images
+\usepackage{amsmath, amsthm} % tr`es bon mode math´ematique
+\usepackage{amsfonts,amssymb}% permet la definition des ensembles
+\usepackage{float} % pour le placement des figure
+\usepackage{url} % pour une gestion efficace des url
+\bibliographystyle{plain} % Style bibliographique
+%=============== Corps ===============
 \begin{document}
+
+\tableofcontents % ´ecrit la table des mati`eres
 
 % Page de couverture
 \begin{titlepage}
@@ -14,65 +34,30 @@
 \end{titlepage}
 
 % Page de formules mathématiques avec démonstration du théorème de Cauchy
-\section*{Théorème de Cauchy}
+\section*{Résoluton Exercices 1}
 
-Soit \( f(x) \) une fonction continue sur l'intervalle fermé \( [a,b] \) et dérivable sur l'intervalle ouvert \( (a,b) \). Alors, il existe un réel \( c \) dans l'intervalle \( (a,b) \) tel que :
+On considère un modèle à générations imbriquées où les ménages ne vivent
+que deux périodes. Au cours de leur période d'activité, ils perçoivent un
+salaire $w_t$ qu'ils affectent à la consommation $c_t$ courante et à l'épargne $s_t$.
+Au cours de leur période de retraite, ils consacrent leur épargne à la consom-
+mation différée $d_{t+1}$. Leurs préférences intertemporelles sont représentées par
+la fonction d'utilité :
 
-\[
-f(b) - f(a) = f'(c)(b-a)
-\]
 
-\begin{proof}
-Par le théorèm\documentclass{article}
-\usepackage{amsmath} % Pour les formules mathématiques
+$u_t(c_t; d_{t+1})=\frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}}$
 
-\begin{document}
 
-% Page de couverture
-\begin{titlepage}
-    \centering
-    {\LARGE\bfseries Université des Antilles\par}
-    \vspace{2cm}
-    {\scshape\Large Dorival Pierre Chrislin\par}
-    \vspace{2cm}
-    {\large\itshape\today\par}
-\end{titlepage}
+Dans cette économie, les impôts sont nuls $(x = 0)$. Les individus nés en $t$
+sont en nombre $L_t$. Le taux de croissance du nombre de travailleurs d'une
+génération à l'autre est noté $n = 1$:
 
-% Page de formules mathématiques avec démonstration du théorème de Cauchy
-\section*{Théorème de Cauchy}
-
-Soit \( f(x) \) une fonction continue sur l'intervalle fermé \( [a,b] \) et dérivable sur l'intervalle ouvert \( (a,b) \). Alors, il existe un réel \( c \) dans l'intervalle \( (a,b) \) tel que :
-
-\[
-f(b) - f(a) = f'(c)(b-a)
-\]
-
-\begin{proof}
-Par le théorème des accroissements finis, il existe un \( c \) dans \( (a,b) \) tel que :
-
-\[
-f'(c) = \frac{f(b) - f(a)}{b-a}
-\]
-
-En multipliant des deux côtés par \( b-a \), on obtient le résultat souhaité :
-
-\[
-f(b) - f(a) = f'(c)(b-a)
-\]
-\end{proof}
+$a)$ Exprimons les consommations des jeunes et des vieux en fonction du saliare
+$wt$:
 
 \end{document}
-e des accroissements finis, il existe un \( c \) dans \( (a,b) \) tel que :
 
-\[
-f'(c) = \frac{f(b) - f(a)}{b-a}
-\]
 
-En multipliant des deux côtés par \( b-a \), on obtient le résultat souhaité :
 
-\[
-f(b) - f(a) = f'(c)(b-a)
-\]
-\end{proof}
 
-\end{document}
+
+
