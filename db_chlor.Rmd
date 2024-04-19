@@ -12,14 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 ```{r}
 library(dplyr)
-#install.packages("viridis")
+#install.packages("stats")
 library(viridis)
 #install.packages("RColorBrewer")
 library(RColorBrewer)
 #install.packages("fmsb")
 library(fmsb)
 library(ggplot2)
-library(dplyr)
+library(tidyr)
+library(rstatix)
+library(sf)
+library(ggmap)
+# Charger la librairie caret
+library(caret)
+library(stats)
 
 ```
 
@@ -96,7 +102,7 @@ colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_majority"] <- 
 
 colnames(new_db_chlor)[colnames(new_db_chlor) == "mnt.rugosit\xe9_variance"] <- "mnt.rugosite_variance"
 colnames(new_db_chlor)[colnames(new_db_chlor) == "Ann\xe9e"] <- "Annee"
-
+new_db_chlor$Adresse_parcelle <- iconv(new_db_chlor$Adresse_parcelle, from = "UTF-8", to = "ASCII", sub = "e")
 
 new_db_chlor$pluviometrie_moyenne_annuelle <- gsub("-",  "+",new_db_chlor$pluviometrie_moyenne_annuelle)
 
@@ -117,7 +123,7 @@ new_db_chlor$moyenne_pulviometrie <- moyennes
 
 new_db_chlor <- new_db_chlor[, !colnames(new_db_chlor) %in% c("Numero_sig", "ocs_gid", "ocs_code_us","ocs_ossature","ocs_code_cs","ocs_millesime","ocs_source","ocs_id_origine","ocs_code_or","Interet","pluviometrie_moyenne_annuelle","Operateur_5b","Operateur_chld")]
 
-
+new_db_chlor <- na.omit(new_db_chlor)
 # Écrire les données modifiées dans un nouveau fichier CSV
 write.csv(new_db_chlor, "new_db_chlordecone.csv", row.names = FALSE)
 
@@ -196,7 +202,6 @@ unique(new_db_chlordecone$Adresse_parcelle)
 ```{r}
 new_db_chlordecone$Date_prelevement <- as.Date(new_db_chlordecone$Date_prelevement)
 
-table(new_db_chlordecone$ID,new_db_chlordecone$Date_prelevement )
 
 
 
@@ -236,23 +241,23 @@ repetitions_ID_dates
 
 
 ```{r}
-unique(new_db_chlordecone$COMMU_LAB)
+unique(new_db_chlordecone$Adresse_parcelle)
 
 nombre_villes_par_annee <- new_db_chlordecone %>%
-  distinct(Annee,COMMU_LAB) %>%
+  distinct(Annee,Adresse_parcelle) %>%
   group_by(Annee) %>%
-  summarize(Nombre_Villes_Uniques = n_distinct(COMMU_LAB))
+  summarize(Nombre_Villes_Uniques = n_distinct(Adresse_parcelle))
 nombre_villes_par_annee
 
 ```
 ```{r}
 combinaisons <- new_db_chlordecone %>%
-  distinct(Annee, COMMU_LAB)
+  distinct(Annee, Adresse_parcelle)
 
 # Créer une liste des villes pour chaque année
 liste_villes_par_annee <- combinaisons %>%
   group_by(Annee) %>%
-  summarize(COMMU_LAB = paste(COMMU_LAB, collapse = ", "))
+  summarize(Adresse_parcelle = paste(Adresse_parcelle, collapse = ", "))
 
 # Afficher le résultat
 liste_villes_par_annee
@@ -283,72 +288,139 @@ ggplot(data = donnees_ville, aes(x = Taux_chlordecone)) +
   labs(title = paste("Répartition des taux de chlordécone pour la ville", "LAMENTIN(LE)", "au fil des années"), x = "Taux de chlordécone", y = "Fréquence")
 ```
 ```{r}
+# Création du modèle de régression
 modele <- lm(Taux_chlordecone ~ Annee, data = new_db_chlordecone)
 
-
-predictions <- data.frame(Annee = rep(unique(new_db_chlordecone$Annee), length(unique(new_db_chlordecone$COMMU_LAB))),
-                          COMMU_LAB = rep(unique(new_db_chlordecone$COMMU_LAB), each = length(unique(new_db_chlordecone$Annee))))
+# Prédictions
+predictions <- data.frame(Annee = rep(unique(new_db_chlordecone$Annee), length(unique(new_db_chlordecone$Adresse_parcelle))),
+                         Adresse_parcelle = rep(unique(new_db_chlordecone$Adresse_parcelle), each = length(unique(new_db_chlordecone$Annee))))
 predictions$Taux_chlordecone <- predict(modele, newdata = predictions)
 
+# Chargement du package ggplot2
+library(ggplot2)
 
-ggplot(data = new_db_chlordecone, aes(x = Annee, y = Taux_chlordecone, color = COMMU_LAB)) +
+# Création du graphique
+graphique <- ggplot(data = new_db_chlordecone, aes(x = Annee, y = Taux_chlordecone, color = Adresse_parcelle)) +
   geom_point() +
   geom_line(data = predictions) +
   labs(title = "Répartition des taux de chlordécone pour commune au fil des années",
        x = "Année",
        y = "Taux de chlordécone",
-       color = "COMMU_LAB")
+       color = "Adresse_parcelle")
+graphique
+# Sauvegarde du graphique avec les dimensions spécifiées
+#ggsave("nom_du_fichier.png", plot = graphique, width = 6, height = 4)
 ```
 ```{r}
-coefficients <- modele$coefficients
+# Création du modèle de régression
+modele <- lm(Taux_chlordecone ~ Annee, data = new_db_chlordecone)
+
+# Prédictions
+predictions <- data.frame(Annee = rep(unique(new_db_chlordecone$Annee), length(unique(new_db_chlordecone$Adresse_parcelle))),
+                         Adresse_parcelle = rep(unique(new_db_chlordecone$Adresse_parcelle), each = length(unique(new_db_chlordecone$Annee))))
+predictions$Taux_chlordecone <- predict(modele, newdata = predictions)
+
+# Tracé du graphique de régression
+plot(new_db_chlordecone$Annee, new_db_chlordecone$Taux_chlordecone, 
+     xlab = "Année", ylab = "Taux de chlordécone",
+     main = "Répartition des taux de chlordécone pour commune au fil des années",
+     col = "blue", pch = 20)
+abline(modele, col = "red")  # Ajout de la ligne de régression
+
+# Ajout de la légende
+legend("topright", legend = "Régression linéaire", col = "red", lty = 1, cex = 0.8)
 
 
-pentes <- data.frame(COMMU_LAB = unique(new_db_chlordecone$COMMU_LAB), Pente = coefficients[2])
+```
+```{r}
 
 
-set.seed(123) # Pour la reproductibilité des résultats
-nombre_clusters <- 3 #  ajuster le nombre de clusters 
-resultats_clusters <- kmeans(pentes$Pente, centers = nombre_clusters)
+# Diviser les données en ensembles d'entraînement et de test (par exemple, 70% pour l'entraînement et 30% pour les tests)
+set.seed(123) # pour la reproductibilité
+indices <- createDataPartition(new_db_chlordecone$Taux_chlordecone, p = 0.7, list = FALSE)
+train <- new_db_chlordecone[indices, ]
+test <- new_db_chlordecone[-indices, ]
 
-# Ajouter les informations de cluster à notre dataframe de pentes
-pentes$Cluster <- as.factor(resultats_clusters$cluster)
+# Créer le modèle de régression linéaire
+modele <- lm(Taux_chlordecone ~ Annee, data = train)
 
-# Afficher les communes appartenant à chaque cluster
-print(pentes)
+# Afficher un résumé du modèle
+summary(modele)
+```
+```{r}
+# Faire des prédictions sur l'ensemble de test
+predictions <- predict(modele, newdata = test)
+
+# Calculer l'erreur quadratique moyenne (RMSE)
+rmse <- sqrt(mean((predictions - test$Taux_chlordecone)^2))
+print(paste("RMSE:", rmse))
+
+```
+```{r}
+# Choix du nombre de clusters (k)
+k <- 2  # Vous pouvez ajuster cette valeur selon votre contexte
+
+# Sélection des variables pertinentes pour le clustering
+donnees_clustering <- new_db_chlordecone[, c("Annee", "Taux_chlordecone")]
+
+# Application de la méthode des k-moyennes
+kmeans_resultats <- kmeans(donnees_clustering, centers = k)
+
+# Affichage des résultats
+print(kmeans_resultats)
 
 # Visualisation des clusters
-ggplot(pentes, aes(x = Pente, color = Cluster)) +
-  geom_density() +
-  labs(title = "Clusters basés sur la pente des taux de chlordécone",
-       x = "Pente",
-       color = "Cluster")
+library(ggplot2)
+ggplot(donnees_clustering, aes( x = Taux_chlordecone,y = Annee, color = factor(kmeans_resultats$cluster))) +
+  geom_point() +
+  labs(title = "Clustering des données de chlordécone",
+       x = "Année",
+       y = "Taux de chlordécone",
+       color = "Cluster") +
+  theme_minimal()
+```
+
+```{r}
+
+k <- 3  # Vous pouvez ajuster cette valeur selon votre contexte
+
+# Sélection des variables pertinentes pour le clustering
+donnees_clustering <- new_db_chlordecone[, c( "Annee", "Taux_chlordecone")]
+
+# Application de la méthode des k-moyennes
+kmeans_resultats <- kmeans(donnees_clustering, centers = k)
+
+# Affichage des résultats
+print(kmeans_resultats)
+
+# Visualisation des clusters
+library(ggplot2)
+ggplot(donnees_clustering, aes(x = Annee, y = Taux_chlordecone, color = factor(kmeans_resultats$cluster))) +
+  geom_point() +
+  labs(title = "Clustering des données de chlordécone",
+       x = "Année",
+       y = "Taux de chlordécone",
+       color = "Cluster") +
+  theme_minimal()
+```
+
+
+```{r}
+plot(new_db_chlordecone$Annee, new_db_chlordecone$Taux_chlordecone, xlab = "Année", ylab = "Taux de chlordécone", type = "l")
+
+# Graphique de la distribution des taux de chlordécone par commune
+boxplot(Taux_chlordecone ~ COMMU_LAB, data = new_db_chlordecone, xlab = "Commune", ylab = "Taux de chlordécone")
+
+```
+
+```{r}
+
+adresses_ville <- new_db_chlordecone$Adresse_parcelle[new_db_chlordecone$COMMU_LAB == "BASSE-POINTE"]
+add_uniqe <- unique(adresses_ville)
+
+
 ```
 ```{r}
-# Calculer les dérivées des courbes de régression pour chaque commune
-derivatives <- data.frame(Annee = unique(new_db_chlordecone$Annee))
-
-# Pour chaque année, calculer la dérivée pour chaque commune
-for (ville in unique(new_db_chlordecone$COMMU_LAB)) {
-  # Sous-ensemble des données pour la commune spécifique
-  donnees_ville <- subset(new_db_chlordecone, COMMU_LAB == ville)
-  
-  # Extraire les coefficients de la régression linéaire pour cette commune
-  coefficients_ville <- coef(lm(Taux_chlordecone ~ Annee, data = donnees_ville))
-  
-  # Calculer la dérivée (coefficient de pente) pour cette commune
-  derivative_ville <- coefficients_ville[2]
-  
-  # Ajouter la dérivée à notre dataframe
-  derivatives[ville] <- derivative_ville
-}
-
-
-ggplot(derivatives, aes(x = Annee, y = valeur_dérivée)) +
-  geom_line(aes(color = COMMU_LAB)) +
-  labs(title = "Dérivées des courbes de régression pour chaque commune",
-       x = "Année",
-       y = "Dérivée (coefficient de pente)",
-       color = "Ville")
 
 ```
 
