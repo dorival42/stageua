@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 ```{r}
 library(dplyr)
-#install.packages("stats")
+#install.packages("reshape2")
 library(viridis)
 #install.packages("RColorBrewer")
 library(RColorBrewer)
@@ -26,6 +26,7 @@ library(ggmap)
 # Charger la librairie caret
 library(caret)
 library(stats)
+library(reshape2)
 
 ```
 
@@ -412,6 +413,71 @@ plot(new_db_chlordecone$Annee, new_db_chlordecone$Taux_chlordecone, xlab = "Ann�
 boxplot(Taux_chlordecone ~ COMMU_LAB, data = new_db_chlordecone, xlab = "Commune", ylab = "Taux de chlordécone")
 
 ```
+```{r}
+
+
+# Séparation des données pour chaque adresse de parcelle
+adresses_parcelles <- unique(new_db_chlordecone$Adresse_parcelle)
+
+# Initialisation d'une liste pour stocker les résultats
+resultats <- list()
+
+# Boucle sur chaque adresse de parcelle
+for (adresse_parcelle in adresses_parcelles) {
+  # Filtrer les données pour l'adresse de parcelle spécifique
+  donnees_adresse <- subset(new_db_chlordecone, Adresse_parcelle == adresse_parcelle)
+  
+  # Calculer la moyenne du taux de chlordécone pour chaque année
+  moyennes <- aggregate(Taux_chlordecone ~ Annee, data = donnees_adresse, FUN = mean)
+  
+  # Identifier les années où le taux de chlordécone augmente et diminue
+  croissance <- diff(moyennes$Taux_chlordecone) > 0
+  decroissance <- diff(moyennes$Taux_chlordecone) < 0
+  
+  # Stocker les résultats dans la liste
+  resultats[[adresse_parcelle]] <- data.frame(Annee = moyennes$Annee[-1], Croissance = croissance, Decroissance = decroissance)
+}
+
+# Convertir la liste de résultats en un dataframe
+resultats_df <- do.call(rbind, resultats)
+
+# Regrouper les résultats pour le graphique
+resultats_melt <- reshape2::melt(resultats_df, id.vars = "Annee", variable.name = "Type", value.name = "Valeur")
+
+# Créer le graphique
+ggplot(data = resultats_melt, aes(x = Annee, y = Valeur, color = Type)) +
+  geom_line() +
+  labs(title = "Évolution du taux de chlordécone par adresse de parcelle",
+       x = "Année",
+       y = "Valeur moyenne du taux de chlordécone") +
+  scale_color_manual(values = c("blue", "red"),
+                     labels = c("Croissance", "Décroissance")) +
+  theme_minimal()
+
+```
+
+```{r}
+# Filtrer les données pour une seule adresse de parcelle
+adresse_selectionnee <- "Union"
+donnees_adresse <- subset(new_db_chlordecone, Adresse_parcelle == adresse_selectionnee)
+
+# Créer un graphique linéaire
+ggplot(data = donnees_adresse, aes(x = Date_prelevement, y = Taux_chlordecone)) +
+  geom_line() +
+  labs(title = paste("Évolution du taux de chlordécone pour l'adresse de parcelle", adresse_selectionnee),
+       x = "Année",
+       y = "Taux de chlordécone") +
+  theme_minimal()
+
+ggplot(data = donnees_adresse, aes(x = Date_prelevement, y = Taux_chlordecone)) +
+  geom_bar(stat = "identity") +
+  labs(title = paste("Évolution du taux de chlordécone pour l'adresse de parcelle", adresse_selectionnee),
+       x = "Année",
+       y = "Taux de chlordécone") +
+  theme_minimal()
+```
+
+
 
 ```{r}
 
