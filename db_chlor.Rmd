@@ -12,9 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 ```{r}
 library(dplyr)
-#install.packages("reshape2")
+#install.packages("purrr")
 library(viridis)
-#install.packages("RColorBrewer")
+#install.packages("ggpubr")
+#install.packages("factoextra")
 library(RColorBrewer)
 #install.packages("fmsb")
 library(fmsb)
@@ -27,6 +28,9 @@ library(ggmap)
 library(caret)
 library(stats)
 library(reshape2)
+library(purrr)
+library(ggpubr)
+library(factoextra)
 
 ```
 
@@ -69,6 +73,7 @@ colnames(db_chlor)
 ```{r}
 db_chlor$COMMU_LAB[is.na(db_chlor$COMMU_LAB)] <- "COMMU_UN"
 db_chlor <- subset(db_chlor, COMMU_LAB != "COMMU_UN")
+db_chlor <- subset(db_chlor, Adresse_parcelle != "")
 supprimer_colonnes_na <- function(data) {
   # Identifier les colonnes avec au moins une valeur NA
   colonnes_a_supprimer <- names(data)[apply(data, 2, function(x) any(is.na(x)))]
@@ -124,7 +129,6 @@ new_db_chlor$moyenne_pulviometrie <- moyennes
 
 new_db_chlor <- new_db_chlor[, !colnames(new_db_chlor) %in% c("Numero_sig", "ocs_gid", "ocs_code_us","ocs_ossature","ocs_code_cs","ocs_millesime","ocs_source","ocs_id_origine","ocs_code_or","Interet","pluviometrie_moyenne_annuelle","Operateur_5b","Operateur_chld")]
 
-new_db_chlor <- na.omit(new_db_chlor)
 # Écrire les données modifiées dans un nouveau fichier CSV
 write.csv(new_db_chlor, "new_db_chlordecone.csv", row.names = FALSE)
 
@@ -145,25 +149,25 @@ nlle_table
 # Analyse statistiques
 
 
-data_commu <- new_db_chlordecone[, c("COMMU_LAB", "Taux_chlordecone")]
+data_parcelle <- new_db_chlordecone[, c("Adresse_parcelle", "Taux_chlordecone")]
 
 # Agrégation des données par commune (calcul de la moyenne)
-mean_commu <- aggregate(Taux_chlordecone ~ COMMU_LAB, data = data_commu, FUN = mean)
+mean_parcelle <- aggregate(Taux_chlordecone ~ Adresse_parcelle, data = data_parcelle, FUN = mean)
 
 
 
 # Génération de 35 couleurs distinctes à partir de la palette
 couleurs <- rainbow(35)
 # Création du graphique (exemple avec un diagramme en barres)
-barplot(mean_commu$Taux_chlordecone, 
-        names.arg = mean_commu$COMMU_LAB, 
+barplot(mean_parcelle$Taux_chlordecone, 
+        names.arg = mean_parcelle$Adresse_parcelle, 
         col = couleurs, # Utilisation des couleurs variables
         xlab = "Commune", 
         ylab = "Taux moyen de chlordecone",
-        main = "Répartition des taux de chlordecone par commune")
+        main = "Répartition des taux de chlordecone par parcelle")
 
 legend("topright", 
-       legend = mean_commu$COMMU_LAB, 
+       legend = mean_parcelle$Adresse_parcelle, 
        fill = couleurs, 
        title = "Communes",
        text.col = "black",   
@@ -264,17 +268,7 @@ liste_villes_par_annee <- combinaisons %>%
 liste_villes_par_annee
 ```
 
-```{r}
 
-# Filtrer les données pour la ville spécifique
-donnees_ville <- subset(new_db_chlordecone, COMMU_LAB == "LAMENTIN(LE)")
-
-
-ggplot(data = donnees_ville, aes(x = Annee, y = Taux_chlordecone)) +
-  geom_line() +
-  labs(title = "Variation des taux de chlordécone Lamentin", x = "Année", y = "Taux de chlordécone")
-
-```
 ```{r}
 
 ggplot(data = donnees_ville, aes(x = Annee, y = Taux_chlordecone)) +
@@ -413,80 +407,132 @@ plot(new_db_chlordecone$Annee, new_db_chlordecone$Taux_chlordecone, xlab = "Ann�
 boxplot(Taux_chlordecone ~ COMMU_LAB, data = new_db_chlordecone, xlab = "Commune", ylab = "Taux de chlordécone")
 
 ```
+
+
+
+
+
 ```{r}
 
+adresses_ville <- new_db_chlordecone$Adresse_parcelle[new_db_chlordecone$COMMU_LAB == "LAMENTIN(LE)"]
 
-# Séparation des données pour chaque adresse de parcelle
-adresses_parcelles <- unique(new_db_chlordecone$Adresse_parcelle)
 
-# Initialisation d'une liste pour stocker les résultats
-resultats <- list()
+nlle_table <- new_db_chlordecone[, c("Adresse_parcelle","Annee")] 
+nlle_table
 
-# Boucle sur chaque adresse de parcelle
-for (adresse_parcelle in adresses_parcelles) {
-  # Filtrer les données pour l'adresse de parcelle spécifique
-  donnees_adresse <- subset(new_db_chlordecone, Adresse_parcelle == adresse_parcelle)
+adresses_uniques <- distinct(new_db_chlordecone, Adresse_parcelle)
+nouveau_tableau <- adresses_uniques %>%
+  left_join(new_db_chlordecone, by = "Adresse_parcelle") %>%
+  pivot_wider(names_from = Annee, values_fn = function(x) ifelse(is.na(x), 0, 1), values_fill = 0)
   
-  # Calculer la moyenne du taux de chlordécone pour chaque année
-  moyennes <- aggregate(Taux_chlordecone ~ Annee, data = donnees_adresse, FUN = mean)
-  
-  # Identifier les années où le taux de chlordécone augmente et diminue
-  croissance <- diff(moyennes$Taux_chlordecone) > 0
-  decroissance <- diff(moyennes$Taux_chlordecone) < 0
-  
-  # Stocker les résultats dans la liste
-  resultats[[adresse_parcelle]] <- data.frame(Annee = moyennes$Annee[-1], Croissance = croissance, Decroissance = decroissance)
-}
 
-# Convertir la liste de résultats en un dataframe
-resultats_df <- do.call(rbind, resultats)
+# Afficher le nouveau tableau
+print(nouveau_tableau)
 
-# Regrouper les résultats pour le graphique
-resultats_melt <- reshape2::melt(resultats_df, id.vars = "Annee", variable.name = "Type", value.name = "Valeur")
-
-# Créer le graphique
-ggplot(data = resultats_melt, aes(x = Annee, y = Valeur, color = Type)) +
-  geom_line() +
-  labs(title = "Évolution du taux de chlordécone par adresse de parcelle",
-       x = "Année",
-       y = "Valeur moyenne du taux de chlordécone") +
-  scale_color_manual(values = c("blue", "red"),
-                     labels = c("Croissance", "Décroissance")) +
-  theme_minimal()
+```
+```{r}
+qqnorm(new_db_chlordecone$Taux_chlordecone)
+hist(new_db_chlordecone$Taux_chlordecone,main="",xlab="")
 
 ```
 
 ```{r}
-# Filtrer les données pour une seule adresse de parcelle
-adresse_selectionnee <- "Union"
-donnees_adresse <- subset(new_db_chlordecone, Adresse_parcelle == adresse_selectionnee)
+# Grouper les données par adresse de parcelle et calculer les variations du taux de chlordécone d'une année à l'autre
+resultats <- new_db_chlordecone %>%
+  group_by(Adresse_parcelle) %>%
+  mutate(variation = Taux_chlordecone - lag(Taux_chlordecone)) %>%
+  filter(!is.na(variation)) %>%
+  mutate(decroissance = ifelse(variation < 0, TRUE, FALSE)) %>%
+  select(Adresse_parcelle, Annee, decroissance)
+resultats 
+# Afficher les années où le taux de chlordécone décroît pour chaque adresse de parcelle
+resultats_decroissance <- resultats %>%
+  filter(decroissance == TRUE) %>%
+  group_by(Adresse_parcelle) %>%
+  summarize(Annees_decroissance = toString(unique(Annee)))
 
-# Créer un graphique linéaire
-ggplot(data = donnees_adresse, aes(x = Date_prelevement, y = Taux_chlordecone)) +
-  geom_line() +
-  labs(title = paste("Évolution du taux de chlordécone pour l'adresse de parcelle", adresse_selectionnee),
-       x = "Année",
-       y = "Taux de chlordécone") +
-  theme_minimal()
-
-ggplot(data = donnees_adresse, aes(x = Date_prelevement, y = Taux_chlordecone)) +
-  geom_bar(stat = "identity") +
-  labs(title = paste("Évolution du taux de chlordécone pour l'adresse de parcelle", adresse_selectionnee),
-       x = "Année",
-       y = "Taux de chlordécone") +
-  theme_minimal()
-```
-
-
-
-```{r}
-
-adresses_ville <- new_db_chlordecone$Adresse_parcelle[new_db_chlordecone$COMMU_LAB == "BASSE-POINTE"]
-add_uniqe <- unique(adresses_ville)
-
-
+resultats_decroissance
 ```
 ```{r}
+
+
+# Filtrer les adresses de parcelles où le taux de chlordécone décroît pour toutes les années
+adresses_decroissantes <- resultats %>%
+  group_by(Adresse_parcelle) %>%
+  summarise(decroissance_total = all(decroissance))
+
+# Filtrer les adresses de parcelles où le taux de chlordécone croît pour toutes les années
+adresses_croissantes <- resultats %>%
+  filter(decroissance == FALSE) %>%
+  group_by(Adresse_parcelle) %>%
+  summarise(croissance_total = all(!decroissance))
+
+# Fusionner les deux ensembles de données
+adresses_clusters <- full_join(adresses_decroissantes, adresses_croissantes, by = "Adresse_parcelle") %>%
+  replace(is.na(.), FALSE)  # Remplacer les NA par FALSE
+
+# Appliquer le clustering K-means
+set.seed(123)  # Pour la reproductibilité des résultats
+kmeans_cluster <- kmeans(adresses_clusters[, -1], centers = 2)  # Cluster binaire, croissance et décroissance
+kmeans_cluster
+# Visualiser les clusters
+adresses_clusters$cluster <- as.factor(kmeans_cluster$cluster)
+adresses_clusters_plot <- adresses_clusters %>%
+  pivot_longer(cols = c(decroissance_total, croissance_total)) %>%
+  ggplot(aes(x = name, y = Adresse_parcelle, fill = factor(value))) +
+  geom_tile() +
+  labs(title = "Clusters des adresses de parcelles",
+       x = NULL,
+       y = NULL,
+       fill = NULL) +
+  scale_fill_manual(values = c("yellow", "blue")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 10, vjust = 0.5, hjust=1))
+
+adresses_clusters_plot
+
+
+```
+
+```{r}
+adresses_crois <- resultats %>%
+  filter(decroissance == FALSE) %>%
+  group_by(Adresse_parcelle) %>%
+summarize(Annees_croissance = toString(unique(Annee)))
+
+ 
+adresses_crois
+```
+```{r}
+library(dplyr)
+
+# Regrouper les données par commune et obtenir une liste des adresses de parcelles pour chaque commune
+adresses_par_commune <- new_db_chlordecone %>%
+  group_by(COMMU_LAB) %>%
+  summarize(adresses_parcelles = paste(Adresse_parcelle, collapse = ""))
+
+# Afficher les adresses des parcelles pour chaque commune
+adresses_par_commune
+
+parcelles_par_commune <- adresses_par_commune %>%
+  filter(COMMU_LAB == "DUCOS")
+
+# Afficher les adresses des parcelles pour la commune spécifique
+parcelles_par_commune$adresses_parcelles
+
+
+```
+```{r}
+taux_chl<- data.frame(new_db_chlordecone$Annee, new_db_chlordecone$Taux_chlordecone)
+cluster_1 <- kmeans(taux_chl, centers = 7)
+summary(cluster_1)
+
+plot(taux_chl, col = cluster_1$cluster,pch=16,cex=1.2,main="Regroupement par les k-means")
+
+points(cluster_1$centers, col = 1:3, pch = 4,cex=2,lwd=3)
+
+legend(x="topright", legend=unique(cluster_1$cluster), col=unique(cluster_1$cluster), pch=16)
+
 
 ```
 
