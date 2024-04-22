@@ -420,14 +420,13 @@ adresses_ville <- new_db_chlordecone$Adresse_parcelle[new_db_chlordecone$COMMU_L
 nlle_table <- new_db_chlordecone[, c("Adresse_parcelle","Annee")] 
 nlle_table
 
-adresses_uniques <- distinct(new_db_chlordecone, Adresse_parcelle)
-nouveau_tableau <- adresses_uniques %>%
-  left_join(new_db_chlordecone, by = "Adresse_parcelle") %>%
-  pivot_wider(names_from = Annee, values_fn = function(x) ifelse(is.na(x), 0, 1), values_fill = 0)
-  
+# Regrouper les données par commune et obtenir une liste des adresses de parcelles pour chaque commune
+adresses_par_commune <- new_db_chlordecone %>%
+  group_by(Adresse_parcelle) %>%
+  summarize(adresses_parcelles = paste(Annee, collapse = ","))
 
-# Afficher le nouveau tableau
-print(nouveau_tableau)
+# Afficher les adresses des parcelles pour chaque commune
+adresses_par_commune
 
 ```
 ```{r}
