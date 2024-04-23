@@ -426,7 +426,17 @@ adresses_par_commune <- new_db_chlordecone %>%
   summarize(adresses_parcelles = paste(Annee, collapse = ","))
 
 # Afficher les adresses des parcelles pour chaque commune
-adresses_par_commune
+ nlle_table %>%
+  filter(Adresse_parcelle == "1 Impasse du Manioc")
+ unique(nlle_table$Adresse_parcelle)
+ 
+elements_repetes <- new_db_chlordecone %>%
+  group_by(Adresse_parcelle) %>%
+  filter(n_distinct(Annee) >= 3)
+ elements_repetes
+ 
+ write.csv(elements_repetes, "new_db_chlordeco.csv", row.names = FALSE)
+ 
 
 ```
 ```{r}
