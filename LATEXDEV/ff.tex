@@ -22,10 +22,15 @@
 %=============== Corps ===============
 \begin{document}
 
+<<<<<<< HEAD
+=======
+\tableofcontents % ´ecrit la table des mati`eres
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 % Page de couverture
 \begin{titlepage}
     \centering
+<<<<<<< HEAD
     \vspace*{1cm}
     \includegraphics[width=4cm]{logo.jpg} % Assurez-vous d'avoir le fichier logo_universite.jpg dans le même répertoire que votre fichier .tex, ou indiquez le chemin complet.
     \vfill
@@ -41,6 +46,13 @@
     {\Large\itshape Professeur: Patrice BORDA\par} % Assurez-vous de mettre en forme le nom du professeur selon vos préférences.
     \vfill
     {\large 25 Avril  2024 \par} % Assurez-vous de mettre la date selon vos préférences.
+=======
+    {\LARGE\bfseries Université des Antilles\par}
+    \vspace{2cm}
+    {\scshape\Large Dorival Pierre Chrislin\par}
+    \vspace{2cm}
+    {\large\itshape\today\par}
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 \end{titlepage}
 
 % Page de formules mathématiques avec démonstration du théorème de Cauchy
@@ -54,32 +66,58 @@ mation différée $d_{t+1}$. Leurs préférences intertemporelles sont représen
 la fonction d'utilité :
 
 
+<<<<<<< HEAD
 $u_t(c_t; d_{t+1})=\frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}}$\\ \\
+=======
+$u_t(c_t; d_{t+1})=\frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}}$
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 
 Dans cette économie, les impôts sont nuls $(x = 0)$. Les individus nés en $t$
 sont en nombre $L_t$. Le taux de croissance du nombre de travailleurs d'une
+<<<<<<< HEAD
 génération à l'autre est noté $n = 1$:\\ \\
 $a)$ Exprimons les consommations des jeunes et des vieux en fonction du saliare
 $wt$:\\
+=======
+génération à l'autre est noté $n = 1$:
+
+$a)$ Exprimons les consommations des jeunes et des vieux en fonction du saliare
+$wt$:
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 Fonction d'utilité compte tenu de la contrainte budgétaire intertemporelle:
 
 $ \left\{\begin{array}{rl}
+<<<<<<< HEAD
  Max \ u_t(c_t; d_{t+1}) &=  \frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}} \\
  
 w_t & =  c_t + \frac{d_{t+1}}{1+r_{t+1}}\end{array}\right. $  \\ \\
 Considérons la fonction Lagrangienne :\\
+=======
+ Max \ u_t(c_t; d_{t+1})=  \frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}} \\
+ 
+w_t  =  c_t + \frac{d_{t+1}}{1+r_{t+1}}\end{array}\right. $  \\
+
+Considérons la fonction Lagrangienne :
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 $ L(c_t,d_{t+1},\lambda_t)= \frac{1}{2}\log{c_t} + \frac{1}{2}\log{d_{t+1}} +\lambda_t(w_t-c_t - \frac{d_{t+1}}{1+r_{t+1}})  $  \\
 
 Faisons la dérivée de la fonction Lagrangienne par rapport $c_t :  $ \\
 
+<<<<<<< HEAD
 $
 \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial c_t} = \frac{1}{2c_t} - \lambda_t 
 $ \\ \\
 
 Posons  \ $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial c_t} = 0  $ \\
+=======
+$\\
+\frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial c_t} = \frac{1}{2c_t} - \lambda_t 
+$ \\
+Posons  $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial c_t} = 0  $ \\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 
 
@@ -88,6 +126,7 @@ Posons  \ $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial c_t} = 0  $ \\
 \end{equation} 
 
 
+<<<<<<< HEAD
 Faisons la dérivée de la fonction Lagrangienne par rapport $d_{t+1} : $\\ 
 
 $
@@ -95,11 +134,20 @@ $
 $\\ \\
 
 Posons \ $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial d_{t+1}} = 0 $ \\
+=======
+Faisons la dérivée de la fonction Lagrangienne par rapport $d_{t+1} : \\ $
+$\\
+\frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial d_{t+1}} = \frac{1}{2 d_{t+1}} - \frac{\lambda_t}{1+r_{t+1}} 
+$\\
+
+Posons  $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial d_{t+1}} = 0 $ \\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
   \begin{equation}\label{eq:test2}
   \Rightarrow \lambda_t=\frac{1+r_{t+1}}{2 d_{t+1}}
 \end{equation}  
 
+<<<<<<< HEAD
 Faisons la dérivée de la fonction Lagrangienne par rapport $\lambda_t :  $ \\ \\
  
 $
@@ -107,24 +155,45 @@ $
 $ \\
 
 Posons \ $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = 0 $ \\
+=======
+Faisons la dérivée de la fonction Lagrangienne par rapport $\lambda_t :  $ \\
+$\\
+\frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = w_t-c_t - \frac{d_{t+1}}{1+r_{t+1}} 
+$ \\
+
+Posons  $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = 0 $ \\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
  \begin{equation}\label{eq:test3}
   \Rightarrow w_t=c_t + \frac{d_{t+1}}{1+r_{t+1}}
 \end{equation}
     
 
+<<<<<<< HEAD
 (\ref{eq:test1}) et (\ref{eq:test2}) nous donnent : \\ \\
 
 $
 \frac{1}{c_t} = \frac{1+r_{t+1}}{d_{t+1}}
 $\\ \\
 
+=======
+(\ref{eq:test1}) et (\ref{eq:test2}) nous donnent : \\
+$\\
+\frac{1}{c_t} = \frac{1+r_{t+1}}{d_{t+1}}\\
+$\\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 $ \Rightarrow c_t= \frac{d_{t+1}}{1+r_{t+1}}$  et  $ d_{t+1}= c_t ({1+r_{t+1}})$\\
 
 Dans (\ref{eq:test1})\: $ w_t=c_t + \frac{d_{t+1}}{1+r_{t+1}}$ \\
 
 D'o\'{u} \:
+<<<<<<< HEAD
  \fbox {$c_t = \frac{1}{2} w_t $} \: et \: \fbox {$d_{t+1} = \frac{1}{2} w_t(1+r_{t+1}) $}\\ \\
+=======
+ \fbox {$c_t = \frac{1}{2} w_t $} \: et \: \fbox {$d_{t+1} = \frac{1}{2} w_t(1+r_{t+1}) $}\\
+ 
+ 
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
  $b)$  Déterminer l'épargne en fonction de $w_t$.\\
  
  On sait que: $ s_t = \frac{d_{t+1}}{1+r_{t+1}} $\\
@@ -135,8 +204,15 @@ D'o\'{u} \:
  
  $Y_t=10K_t^{\frac{1}{2}}L_t^{\frac{1}{2}}$\\
  
+<<<<<<< HEAD
  avec $K_t$ est le stock de capital et $L_t$ l'emploi.\\ \\
  $c)$ Supposant les marchés concurrentiels, exprimons le salaire et les taux d'intér\^{e}t en fonction du stock de capital par t\^{e}te.\\
+=======
+ avec $K_t$ est le stock de capital et $L_t$ l'emploi.\\
+ 
+ $c)$ Supposant les marchés concurrentiels, exprimons le salaire et les taux d'intér\^{e}t
+en fonction du stock de capital par t\^{e}te.\\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 $ max\ \pi_t= Y_t -w_tL_t-K_t r_t $\\
 
@@ -155,6 +231,7 @@ $ \Rightarrow r_t= 5(\frac{K_t}{L_t})^{\frac{-1}{2}}=5k_t^{\frac{-1}{2}}$ \: ave
  
  $ \Rightarrow r_t= 5(\frac{K_t}{L_t})^{\frac{1}{2}}=5k_t^{\frac{1}{2}}$ \: avec $k_t$ stock capital par t\^{e}te.\\
 
+<<<<<<< HEAD
 $ \Rightarrow$  \fbox {$w_t = 5k_t^{\frac{1}{2}} $} \\ \\
 $d)$ Déterminons l'évolution du stock de capital par tête.\\\\
 $K_{t+1}=L_t s_t$ \: or \: $L_t=\frac{L_{t+1}}{N}$\\\\
@@ -163,6 +240,18 @@ $\Rightarrow \frac{K_{t+1}}{L_{t+1}}=k_{t+1}=\frac{1}{4}w_t$ \: car $s_t = \frac
 $ \Rightarrow$  \fbox {$k_{t+1} =\frac{5}{4}k_t^{\frac{1}{2}} $} \: car \ $w_t = 5k_t^{\frac{1}{2}} $\\\\
 $e)$ Déterminons l'expression du capital par tête à l'équilibre. Cet équilibre
 est-il stable:\\\\
+=======
+$ \Rightarrow$  \fbox {$w_t = 5k_t^{\frac{1}{2}} $} \\
+
+$d)$ Déterminons l'évolution du stock de capital par tête.\\
+$K_{t+1}=L_t s_t$ \: or \: $L_t=\frac{L_{t+1}}{N}$\\
+$\Rightarrow  K_{t+1}=L_{t+1}\frac{s_t}{2}$\\
+$\Rightarrow \frac{K_{t+1}}{L_{t+1}}=k_{t+1}=\frac{1}{4}w_t$ \: car $s_t = \frac{1}{2} w_t $\\
+$ \Rightarrow$  \fbox {$k_{t+1} =\frac{5}{4}k_t^{\frac{1}{2}} $} \: $w_t = 5k_t^{\frac{1}{2}} $\\
+
+$e)$ Déterminons l'expression du capital par tête à l'équilibre. Cet équilibre
+est-il stable:\\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 A l'équilibre: \: $k_{t+1}=k_t=k^*=\frac{5}{4}k^{*\frac{1}{2}}$\\
 
@@ -178,11 +267,20 @@ $
 
 $
  \alpha <\frac{1}{2}<1$\\
+<<<<<<< HEAD
  L'équilibre est stable\\\\
  $ f)$ La valeur du stock de capital de la règle d'or.\\\\
  $Y_t=10K_t^{\frac{1}{2}}L_t^{\frac{1}{2}}$\\\\
  $Y_t=L_tc_t+L_{t+1}K_{t+1}+L_{t-1}d_{t+1}$\\\\
  $\frac{Y_t}{L_t}=c_t+(1+n)K_{t+1}+\frac{d_{t+1}}{1+n}$\: car $L_{t+1}=(1+N)L_t$\\\\     
+=======
+ L'équilibre est stable\\
+ 
+ $ f)$ La valeur du stock de capital de la règle d'or.\\
+ $Y_t=10K_t^{\frac{1}{2}}L_t^{\frac{1}{2}}$\\
+ $Y_t=L_tc_t+L_{t+1}K_{t+1}+L_{t-1}d_{t+1}$\\
+ $\frac{Y_t}{L_t}=c_t+(1+n)K_{t+1}+\frac{d_{t+1}}{1+n}$\: car $L_{t+1}=(1+N)L_t$\\
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 $ \frac{Y_t}{L_t}=10(\frac{K_t}{L_t})^{\frac{1}{2}}=10k_t^{\frac{1}{2}}$\\
 
 $ 10k_t^{\frac{1}{2}}=c_t+(1+n)K_{t+1}+\frac{d_{t+1}}{1+n}$\\
@@ -192,6 +290,7 @@ $ 10k_t^{\frac{1}{2}}=c_t+(1+n)K_{t+1}+\frac{d_{t+1}}{1+n}$\\
  $\frac{\partial c_t}{K_t}=5k_t^\frac{-1}{2}-2$\\
  
   Posons $\frac{\partial c_t}{K_t}=0$\\
+<<<<<<< HEAD
   
   $k_t^\frac{-1}{2}=\frac{2}{5}$\\
   
@@ -201,13 +300,25 @@ $ 10k_t^{\frac{1}{2}}=c_t+(1+n)K_{t+1}+\frac{d_{t+1}}{1+n}$\\
   Dans ce cas l'économie est en régime sous-accumulation.\\
   
   \section*{Résoluton Exercices 2}
+=======
+  $k_t^\frac{-1}{2}=\frac{2}{5}$\\
+  $k_t=\frac{25}{4}=k_{or}$\\
+  Dans ce cas l'économie est en régime sous-accumulation.\\
+  
+  \section*{Résoluton Exercices 1}
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
   
   Considérons un modèle à générations imbriquées où les ménages ne vivent que deux périodes. Durant la première période, ils perçoivent un salaire $w_t$; qu'ils affectent à la  consommation courante $c_t$; et à l'épargne $s_t$; et au versement des cotisations de retraite, $\sigma w_t$: $\sigma$; est le taux de cotisation à la retraite par répartition. Devenus vieux à la deuxième période, ils consacrent leur épargne et leur pension de retraite $\overline{\theta}\phi w_t$; à la consommation différée $d_{t+1}$.
 $\overline{\theta}$ ; est l'espérance de vie du retraité tandis que ; est le taux de remplacement
 des retraites. Les préférences des ménages sont représentées par la fonction d'utilité :\\
 $u_t(c_t; d_{t+1})=(1-s)\log{c_t} + s\log{d_{t+1}}$ \: $0<s<1$
 \\
+<<<<<<< HEAD
 Notons $N$, l'effctif (constant) de la population active.\\\\
+=======
+Notons $N$, l'effctif (constant) de la population active.\\
+
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 $a)$ Déterminons la contrainte budgétaire intertemporelle des ménages.\\
 
 Fonction d'utilité compte tenu de la contrainte budgétaire intertemporelle:\\
@@ -279,8 +390,15 @@ Faisons la dérivée de la fonction Lagrangienne par rapport $\lambda_t :  $ \\
 $\\
 \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = w_t-c_t - \frac{d_{t+1}}{1+r_{t+1}} 
 $ \\ \\
+<<<<<<< HEAD
 Posons  $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = 0 $ \\ \\
 $\Rightarrow w_t-c_t - \sigma w_t-\frac{d_{t+1}-\overline{\theta}\phi w_t}{(1+r_{t+1})}=0$\\ \\
+=======
+Posons  $ \frac{\partial L(c_t,d_{t+1},\lambda_t)}{\partial \lambda_t} = 0 $ \\
+
+$\Rightarrow w_t-c_t - \sigma w_t-\frac{d_{t+1}-\overline{\theta}\phi w_t}{(1+r_{t+1})}=0$\\
+
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
  \begin{equation}\label{eq:test6}
   \Rightarrow w_t = \frac{c_t(1+r_{t+1}) + d_{t+1}-\overline{\theta}\phi w_t}{(1-\sigma)(1+r_{t+1})}
 \end{equation}
@@ -303,6 +421,7 @@ D'o\'{u} \:
  On sait que :  \\ \\
  $s_t=\frac{d_{t+1}-\overline{\theta}\phi w_t}{(1+r_{t+1})}$\\ \\ 
  Rempla\c{c}ons $d_{t+1}$ dans $w_t$, \\ \\
+<<<<<<< HEAD
   $s_t=\frac{s w_t\left(\overline{\theta}\phi +(1- \sigma)(1+r_{t+1}) \right)-\overline{\theta}\phi w_t}{(1+r_{t+1})}$\\ \\
 \fbox {$s_t = w_t\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right)$}\\ \\
 $c)$ Montrons que dans une économie concurrentielle, le salaire et le taux d'intér\^{e}t sont donnés par :\\ \\
@@ -351,6 +470,20 @@ $\Rightarrow (1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1
 
 $g)$ Etudier analytiquement l'effet de l'allongement de l'espérance de vie des
 retraités sur la dynamique de l'économie. Commenter
+=======
+  $s_t=\frac{ w_t\left(\overline{\theta}\phi +(1- \sigma)(1+r_{t+1}) \right)-\overline{\theta}\phi w_t}{(1+r_{t+1})}$\\ \\
+
+
+
+
+
+
+$c)$ Montrer que dans une économie concurrentielle, le salaire et le taux díintÈrÍt sont donnés par :
+
+
+
+
+>>>>>>> f5f489275b7ed69c2e9ff26eb7f081eedfaaffd8
 
 \end{document}
 
