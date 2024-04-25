@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  25 APR 2024 11:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  25 APR 2024 12:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1136,51 +1136,71 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--341
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 349--350
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 355--358
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--353
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
 
  []
 
-[9] (ff.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--377
+
+ []
+
+[9] [10] (ff.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5514 strings out of 474485
- 87282 string characters out of 5742267
+ 5516 strings out of 474485
+ 87302 string characters out of 5742267
  1946542 words of memory out of 5000000
- 27708 multiletter control sequences out of 15000+600000
+ 27710 multiletter control sequences out of 15000+600000
  585361 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,9n,79p,567b,428s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1201,9 +1221,9 @@ KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/pdorival/AppData/Local
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
 pdorival/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pf
 b>
-Output written on ff.pdf (9 pages, 1209707 bytes).
+Output written on ff.pdf (10 pages, 1215868 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

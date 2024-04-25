@@ -337,12 +337,34 @@ $\Rightarrow K_{t+1}=Nw_t\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1-
 $\Rightarrow K_{t+1}=N(1-\alpha)B N^{1-\alpha}k_t\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right)$\\ \\
 $\Rightarrow \frac{K_{t+1}}{N}=(1-\alpha)B N^{1-\alpha}k_t\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right)$\\ \\
 Par conséquent : \ \fbox{$k_{t+1}=(1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right )k_t$}\\ \\
-$e)$ Sous quelle condition le stock de capital par tÍte d'équilibre est-il localement stable ?
+$e)$ Sous quelle condition le stock de capital par tète d'équilibre est-il localement stable ?
 
 
+Soit $k^*$ le stock de capital par tête d'équilibre. 
+La dynamique du stock de capital par tête est donnée par:\\
+\begin{equation}\label{eq:test7}
+   k_{t+1}=(1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right )k_t
+\end{equation}
 
+Évaluons la dérivée partielle de $k_{t+1}$ par raport à $k_t$ autour de l'équilibre $k^*$\\
+\begin{equation}\label{eq:test8}
+    \frac{\partial k_{t+1}}{\partial k_t} = (1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right )
+\end{equation}
 
+  
+  Pour que l'équilibre soit localement stable, il faut que $\left|B\right|<1$\\
+  Comme $0<\alpha<1$ et $0<s<1$ $=>$ $\left|B\right|<1$ 
+Donc,si les perturbations initiales autour de l'équilibre sont petites, le système reviendra vers l'équilibre au fil du temps.\\
 
+\begin{equation}
+    \frac{\partial k_{t+1}}{\partial \bar{\theta}}=(1-\alpha)B N^{1-\alpha}\left(\frac{\phi}{1+r_{t+1}}(s-1)\right )k_t
+\end{equation}
+
+La conclusion analytique que nous pouvons tirer est que l'allongement de l'espérance de vie des retraités a un effet potentiellement négatif sur la dynamique économique, en diminuant le taux de croissance du stock de capital par habitant. Cette tendance peut être attribuée au fait que les individus épargnent davantage pour financer leur retraite prolongée, ce qui réduit les ressources disponibles pour les investissements dans le capital productif de l'économie.
+
+Cependant, il est important de noter que cette conclusion dépend de divers facteurs et peut ne pas être générale dans tous les contextes économiques. Par exemple, si les politiques gouvernementales encouragent l'investissement dans le capital productif ou facilitent l'accès au financement pour les entreprises, cela pourrait atténuer l'impact négatif de l'allongement de l'espérance de vie sur la croissance du stock de capital.
+
+En fin de compte, bien que l'allongement de l'espérance de vie puisse poser des défis économiques, il est également important de reconnaître les bénéfices sociaux potentiels, tels qu'une population active plus expérimentée et une demande soutenue pour certains biens et services liés au vieillissement de la population. Une approche équilibrée et des politiques adaptées peuvent aider à maximiser les avantages et à atténuer les inconvénients de cette évolution démographique. \\ \\
 $f)$ En posant  $(1+g_t)=\frac{k_{t+1}}{k_t}$ déterminer le taux de croissance de l'économie.\\ \\
 $k_{t+1}=(1+g_t)k_t$\\
 Or \ $k_{t+1}=(1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)sk_t \right)$\\ \\
@@ -350,10 +372,24 @@ $(1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1-
 $\Rightarrow g_t=(1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right)-1$\\ \\
 Posons : $g_t=g^*>0$\\ \\
 $\Rightarrow (1-\alpha)B N^{1-\alpha}\left(\frac{\overline{\theta}\phi}{1+r_{t+1}}(s-1) +(1- \sigma)s \right)>1$\\ \\
-
-
 $g)$ Etudier analytiquement l'effet de l'allongement de l'espérance de vie des
-retraités sur la dynamique de l'économie. Commenter
+retraités sur la dynamique de l'économie. Commenter \\
+
+Nous examinons comment l'allongement de l'espérance de vie influence la décision d'épargne des ménages. L'idée est que si les individus s'attendent à vivre plus longtemps, ils seront incités à épargner davantage pour garantir un niveau de vie satisfaisant tout au long de leur retraite prolongée.
+
+Pour illustrer cela, nous nous concentrons sur la variation du taux de croissance du stock de capital par habitant par rapport à l'espérance de vie $\bar{\theta}$. En d'autres termes, nous analysons comment le taux auquel le capital par habitant augmente ou diminue en fonction de l'espérance de vie des retraités.
+
+Si $\bar{\theta}$ augmente, ce qui signifie que les individus s'attendent à vivre plus longtemps, cela pourrait entraîner une augmentation du taux d'épargne. En effet, les gens peuvent choisir de consommer moins aujourd'hui et d'épargner plus en prévision de leurs années de retraite prolongées. Cette augmentation de l'épargne contribue à une augmentation du stock de capital par habitant, car les ressources sont investies dans des actifs productifs qui augmentent la richesse nationale.
+
+
+On a 
+\begin{equation}
+    k_{t+1} = w_t k_t(\frac{-\bar{\theta}(1-s)}{1+r_{t+1}}+s(1-\sigma))
+\end{equation}
+\begin{equation}
+    \frac{\partial k_{t+1}}{\partial \bar{\theta}}=-w_tk_t(\frac{\phi(1-s)}{1+k_{t+1}})
+\end{equation}
+En résumé, l'allongement de l'espérance de vie peut stimuler l'épargne des ménages, ce qui se traduit par une augmentation du stock de capital par habitant, contribuant ainsi à la croissance économique à long terme.
 
 \end{document}
 
