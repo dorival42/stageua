@@ -1,0 +1,19 @@
+---
+title: "Analyses chlodecone"
+author: "Pierre Chrislin DORIVAL"
+date: "2024-04-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+elements_repetes <- new_db_chlordecone %>%
+  group_by(Adresse_parcelle) %>%
+  filter(n_distinct(Annee) >= 3)
+ elements_repetes
+ 
+ write.csv(elements_repetes, "new_db_chlordeco.csv", row.names = FALSE)
+```
+

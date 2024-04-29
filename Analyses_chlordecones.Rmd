@@ -1,0 +1,188 @@
+---
+title: "Analyses chlordecone en Martiniques"
+author: "Pierre Chrislin DORIVAL"
+date: "2024-04-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+colnames(new_db_chlordecone)
+```
+```{r}
+
+#test statistique
+modele <- aov(Taux_chlordecone ~ COMMU_LAB, data=new_db_chlordecone)
+# Vérifier la normalité des résidus avec le test de Shapiro-Wilk
+
+qqnorm(resid(modele))
+qqline(resid(modele))
+```
+```{r}
+# Calculer les résidus du modèle ANOVA
+residus <- resid(modele)
+
+# Tracer l'histogramme des résidus
+hist(residus, main = "Histogramme des résidus", xlab = "Résidus", ylab = "Fréquence")
+
+```
+
+```{r}
+# Appliquer une transformation log sur les résidus
+residus_transformes <- log(residus + 1)
+
+# Tracer l'histogramme des résidus transformés
+hist(residus_transformes, main = "Histogramme des résidus transformés", xlab = "Résidus transformés", ylab = "Fréquence")
+
+
+
+```
+```{r}
+#install.packages("car")
+
+# Charger le package
+#library(car)
+# Appliquer le test de Levene pour vérifier l'homoscédasticité des résidus transformés
+leveneTest(residus_transformes ~ COMMU_LAB, data = new_db_chlordecone)
+```
+Le résultat du test de Levene pour l'homogénéité des variances indique une forte significativité statistique avec une valeur de test F de 214.9 et une valeur p très faible, inférieure à 2.2e-16 (ce qui signifie essentiellement que la valeur p est très proche de zéro).
+
+Cela suggère qu'il y a des différences significatives entre les variances des résidus entre les groupes (niveaux de la variable indépendante). En d'autres termes, l'hypothèse nulle d'homoscédasticité est rejetée, ce qui signifie que les variances des résidus ne sont pas constantes à travers tous les niveaux de la variable indépendante.
+
+Lorsque le test de Levene est significatif, cela peut remettre en question l'interprétation des résultats de l'ANOVA. Dans ce cas, vous devrez peut-être utiliser des méthodes alternatives qui ne reposent pas sur l'hypothèse d'homoscédasticité, comme les tests robustes ou les méthodes de permutation, ou envisager des transformations supplémentaires des données pour stabiliser les variances. Vous pouvez également examiner de plus près les raisons potentielles de la violation de l'homoscédasticité, comme la présence de valeurs aberrantes ou la nécessité de modéliser des interactions supplémentaires.
+```{r}
+# Appliquer le test de Mann-Whitney
+resultat_test <- wilcox.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone)
+# Appliquer le test de Welch
+#resultat_test <- t.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone, var.equal = FALSE)
+resultat_test
+```
+```{r}
+# L'Indice de Position Topographique (TPI)
+# Calculer la matrice de corrélation entre les variables
+correlation_matrix <- cor(new_db_chlordecone[c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean","mnt.pente_mean","mnt.tpi_mean" )])
+
+# Afficher la matrice de corrélation
+print(correlation_matrix)
+
+```
+```{r}
+# Créer un modèle de régression linéaire
+modele_regression <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
+
+# Afficher un résumé du modèle
+summary(modele_regression)
+
+```
+```{r}
+library(ggplot2)
+
+# Supposons que votre jeu de données s'appelle "data" et qu'il contient les colonnes "COMMU_LAB", "ANNEE" et "Taux_chlordecone"
+
+# Créer une liste vide pour stocker les graphiques
+plots <- list()
+
+# Boucler à travers chaque commune unique
+for (commune in unique(new_db_chlordecone$COMMU_LAB)) {
+  # Subset des données pour la commune actuelle
+  commune_data <- subset(new_db_chlordecone, COMMU_LAB == commune)
+  
+  # Créer un graphique en courbes pour la commune actuelle
+  p <- ggplot(commune_data, aes(x = Annee, y = Taux_chlordecone)) +
+    geom_line() +
+    labs(title = paste("Dégradation du chlordecone pour", commune),
+         x = "Année",
+         y = "Taux de chlordecone") +
+    theme_minimal()
+  
+  # Ajouter le graphique à la liste des graphiques
+  plots[[commune]] <- p
+}
+
+# Afficher les graphiques
+plots
+
+
+```
+
+```{r}
+library(dplyr)
+
+# Calculer le nombre de prélèvements par commune sur trois années différentes
+nombre_prelevements <- aggregate(Annee ~ COMMU_LAB, data = new_db_chlordecone, FUN = function(x) length(unique(x)))
+
+# Filtrer les communes avec un nombre de prélèvements sur trois années différentes supérieur à un seuil donné (par exemple, 10)
+seuil <- 10
+communes_a_conserver <- nombre_prelevements$COMMU_LAB[nombre_prelevements$Annee >= seuil]
+
+# Filtrer les données pour ne conserver que les prélèvements des communes à conserver
+plots_histogramme <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
+  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+  p <- ggplot(commune_data, aes(x = Taux_chlordecone)) +
+    geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
+    labs(title = paste("Histogramme des préférences pour", commune),
+         x = "Taux de chlordecone",
+         y = "Fréquence") +
+    theme_minimal()
+  return(p)
+})
+
+# Afficher les histogrammes
+plots_histogramme
+
+
+```
+```{r}
+# Tracer les graphiques en courbes pour chaque commune séparément
+plots <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
+  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+  p <- ggplot(commune_data, aes(x = ANNEE, y = Taux_chlordecone)) +
+    geom_line() +
+    labs(title = paste("Dégradation du chlordecone pour", commune),
+         x = "Année",
+         y = "Taux de chlordecone") +
+    theme_minimal()
+  return(p)
+})
+
+# Afficher les graphiques
+plots
+```
+```{r}
+library(ggplot2)
+
+# Tracer des graphiques en aire empilée pour chaque commune séparément
+plots_aires_empilees <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
+  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+  p <- ggplot(commune_data, aes(x = ANNEE, y = Taux_chlordecone, fill = ANNEE)) +
+    geom_area() +
+    labs(title = paste("Préférences en aire empilée pour", commune),
+         x = "Année",
+         y = "Taux de chlordecone") +
+    theme_minimal()
+  return(p)
+})
+
+# Afficher les graphiques
+plots_aires_empilees
+
+```
+```{r}
+library(ggplot2)
+
+# Tracer un histogramme en barres regroupé pour les préférences par commune
+ggplot(data_filtree, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Histogramme en barres regroupées des préférences par commune",
+       x = "Commune",
+       y = "Taux de chlordecone") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotation des étiquettes de l'axe x pour une meilleure lisibilité
+
+```
+
