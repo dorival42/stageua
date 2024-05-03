@@ -1,0 +1,194 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  3 MAY 2024 14:43
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./memoire_dorival.tex
+(memoire_dorival.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count187
+\c@chapter=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
+)
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count196
+\l__pdf_internal_box=\box51
+) (memoire_dorival.aux)
+\openout1 = `memoire_dorival.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count197
+\scratchdimen=\dimen143
+\scratchbox=\box52
+\nofMPsegments=\count198
+\nofMParguments=\count199
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count266
+\MPscratchDim=\dimen144
+\MPnumerator=\count267
+\makeMPintoPDFobject=\count268
+\everyMPtoPDFconversion=\toks19
+)
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
+s.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+<logo.jpg, id=1, 1982.40625pt x 843.15pt>
+File: logo.jpg Graphic file (type jpg)
+<use logo.jpg>
+Package pdftex.def Info: logo.jpg  used on input line 8.
+(pdftex.def)             Requested size: 103.50105pt x 44.01259pt.
+ [1
+
+{C:/Users/pdorival/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.jp
+g>] [1
+
+] (memoire_dorival.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 3.
+
+Overfull \hbox (8.2507pt too wide) in paragraph at lines 5--5
+ [][] []\OT1/cmr/m/n/10 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Seg
+radation du chlord^^Secone []  
+ []
+
+)
+\tf@toc=\write3
+\openout3 = `memoire_dorival.toc'.
+
+ [2
+
+]
+Overfull \hbox (20.75061pt too wide) in paragraph at lines 43--44
+\OT1/cmr/m/n/10 plinaire, com-bi-nant des anal-y-ses statis-tiques avanc^^Sees,
+ des tech-niques de mod^^Selisation
+ []
+
+[3
+
+]
+Overfull \hbox (70.12276pt too wide) in paragraph at lines 58--58
+[]\OT1/cmr/bx/n/14.4 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Segrad
+ation
+ []
+
+[4
+
+]
+Overfull \hbox (10.52834pt too wide) in paragraph at lines 66--68
+\OT1/cmr/m/n/10 Malgr^^Se les progr^^Res r^^Sealis^^Ses dans la compr^^Sehensio
+n de la d^^Segradation du chlord^^Secone,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--68
+
+ []
+
+[5]
+Overfull \hbox (11.47282pt too wide) in paragraph at lines 85--86
+\OT1/cmr/m/n/10 em-ploy^^Sees pour re-grouper les par-celles en fonc-tion de le
+ur pro-fil de d^^Secontamination
+ []
+
+
+Overfull \hbox (7.50072pt too wide) in paragraph at lines 91--92
+\OT1/cmr/m/n/10 une anal-yse ap-pro-fondie des fac-teurs en-vi-ron-nemen-taux i
+n-fluen^^Xcant la d^^Segradation
+ []
+
+[6] (memoire_dorival.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 1326 strings out of 474485
+ 22361 string characters out of 5742267
+ 1933542 words of memory out of 5000000
+ 23652 multiletter control sequences out of 15000+600000
+ 561748 words of font info for 48 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,5n,65p,779b,151s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/pdorival/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmbx10.pfb><C:/Users/pdorival/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/pdorival/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/pdorival/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/pdorival/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/pdorival
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on memoire_dorival.pdf (7 pages, 1115294 bytes).
+PDF statistics:
+ 57 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+

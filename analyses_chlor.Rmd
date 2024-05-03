@@ -17,3 +17,13 @@ elements_repetes <- new_db_chlordecone %>%
  write.csv(elements_repetes, "new_db_chlordeco.csv", row.names = FALSE)
 ```
 
+```{r}
+unique(new_db_chlordeco$COMMU_LAB)
+unique(new_db_chlordeco$Adresse_parcelle)
+```
+```{r}
+
+nlle_table <- new_db_chlordeco[, c("Adresse_parcelle","COMMU_LAB","Parcelle_cadastrale","Date_prelevement","Taux_chlordecone")] 
+nlle_table
+```
+
