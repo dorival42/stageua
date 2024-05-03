@@ -12,8 +12,189 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ```{r}
-colnames(new_db_chlordecone)
+library(dplyr)
+
+# Regrouper les données par commune et zone, et calculer les statistiques résumées
+donnees_groupees <- new_db_chlordecone %>%
+  group_by(COMMU_LAB, Adresse_parcelle, Annee) %>%
+  summarise(
+    Moyenne_Taux_chlordecone = mean(Taux_chlordecone),
+    Ecart_type_Taux_chlordecone = sd(Taux_chlordecone),
+    Nombre_prelevements = n()
+  )
+
+# Afficher les données regroupées
+print(donnees_groupees)
+
 ```
+
+```{r}
+library(dplyr)
+
+# Définir la fonction
+tableau_commune_zone <- function(data, commune) {
+  # Filtrer les données pour la commune spécifiée
+  commune_data <- filter(data, COMMU_LAB == commune)
+  
+  # Regrouper les données par zone et calculer les statistiques résumées
+  tableau <- commune_data %>%
+    group_by(Adresse_parcelle) %>%
+    summarise(
+      Moyenne_Taux_chlordecone = mean(Taux_chlordecone),
+      Ecart_type_Taux_chlordecone = sd(Taux_chlordecone),
+      Nombre_prelevements = n()
+    )
+  
+  # Afficher le tableau
+  print(tableau)
+}
+
+# Utiliser la fonction avec le nom de la commune spécifiée
+db_commune = tableau_commune_zone(new_db_chlordecone, "AJOUPA BOUILLON")
+
+```
+```{r}
+# Tracer le graphe avec des couleurs pour chaque commune
+ggplot(new_db_chlordecone, aes(x = ANNEE, y = Taux_chlordecone, color = COMMU_LAB)) +
+  geom_line() +
+  labs(title = "Évolution du chlordecone par commune",
+       x = "Année",
+       y = "Taux de chlordecone") +
+  scale_color_discrete(name = "Commune")
+
+```
+```{r}
+# Sélection des variables pour la classification
+vars <- c("moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean","Taux_chlordecone")
+
+# Normalisation des données
+scaled_data <- scale(new_db_chlordecone[vars])
+
+# Choix du nombre de clusters (vous pouvez ajuster ce paramètre selon vos besoins)
+k <- 3
+
+# Application de l'algorithme K-means
+kmeans_result <- kmeans(scaled_data, centers = k)
+
+# Ajout des étiquettes de cluster à vos données
+new_db_chlordecone$Cluster <- as.factor(kmeans_result$cluster)
+
+# Affichage des résultats
+table(new_db_chlordecone$Cluster)
+
+
+```
+
+```{r}
+# Nuage de points des deux premières variables avec couleur par cluster
+plot(scaled_data[, 1], scaled_data[, 2], col = kmeans_result$cluster, 
+     main = "Nuage de points avec couleur par cluster", 
+     xlab = "Variable 1", ylab = "Variable 2")
+legend("topright", legend = paste("Cluster", 1:k), col = 1:k, pch = 19, cex = 1)
+
+```
+```{r}
+# Diagramme en boîte pour chaque variable par cluster
+par(mfrow = c(1, length(vars)))
+for (i in seq_along(vars)) {
+  boxplot(new_db_chlordecone[[vars[i]]] ~ new_db_chlordecone$Cluster, main = paste("Diagramme en boîte de", vars[i]), xlab = "Cluster", ylab = vars[i])
+}
+
+```
+```{r}
+# Sélection des variables pour la PCA
+vars <- c("moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean", "Taux_chlordecone")
+
+# PCA
+pca_result <- prcomp(new_db_chlordecone[vars], scale. = TRUE)  # Scale. = TRUE pour standardiser les variables
+
+# Résumé de la PCA
+summary(pca_result)
+
+# Visualisation des résultats
+biplot(pca_result, scale = 0)  # biplot pour afficher à la fois les variables et les individus sur le même graphique
+
+```
+```{r}
+library(dplyr)
+
+# Regrouper les données par commune et calculer la moyenne du taux de chlordecone
+moyennes_par_commune <- new_db_chlordecone %>%
+  group_by(COMMU_LAB) %>%
+  summarize(Moyenne_chlordecone = mean(Taux_chlordecone))
+
+# Ajouter une colonne pour indiquer si la commune est contaminée à plus de 30 % ou moins
+moyennes_par_commune$Contamination <- ifelse(moyennes_par_commune$Moyenne_chlordecone > 0.1, "ZONE avec plus de 10% contaminé", "ZONE avec moins de 10% contaminé")
+
+# Afficher les premières lignes du tableau résultant
+moyennes_par_commune
+
+# Afficher la répartition des communes dans chaque catégorie de contamination
+table(moyennes_par_commune$Contamination)
+```
+
+```{r}
+# Supposons que votre dataframe s'appelle my_data et contient les variables COMMU_LAB (nom de la commune) et Taux_chlordecone
+
+# Sélectionner uniquement les données nécessaires
+donnees <-moyennes_par_commune[, c("COMMU_LAB", "Moyenne_chlordecone")]
+
+# Définir le seuil de 10 % de contamination
+seuil <- 0.1
+
+# Appliquer la classification en deux clusters avec K-means
+clusters <- kmeans(donnees$Moyenne_chlordecone, centers = 2)
+
+# Ajouter les étiquettes de clusters à vos données
+donnees$Cluster <- clusters$cluster
+
+# Afficher la répartition des communes dans chaque cluster
+table(donnees$Cluster)
+
+# Visualiser les clusters
+plot(donnees$Moyenne_chlordecone, col = clusters$cluster, 
+     main = "Classification des communes en fonction du taux de chlordecone",
+     xlab = "Communes", ylab = "Moyenne_chlordecone")
+legend("topright", legend = c("Moins de 30% contaminé", "Plus de 30% contaminé"), col = 1:2, pch = 1)
+
+```
+
+
+```{r}
+# Exemple de seuils pour la croissance et la décroissance
+seuil_croissance <- 0.1  # Par exemple, toute observation avec un taux de chlordecone supérieur à 0.1 est considérée comme une croissance
+seuil_decroissance <- -0.1  # Par exemple, toute observation avec un taux de chlordecone inférieur à -0.1 est considérée comme une décroissance
+
+# Classification des données
+new_db_chlordecone$Classification <- ifelse(new_db_chlordecone$Taux_chlordecone > seuil_croissance, "Croissance", 
+                                 ifelse(new_db_chlordecone$Taux_chlordecone < seuil_decroissance, "Decroissance", "Stable"))
+
+# Tableau résumé
+table(new_db_chlordecone$Classification)
+
+```
+
+```{r}
+barplot(table(new_db_chlordecone$Classification), 
+        main = "Répartition des taux de chlordecone",
+        xlab = "Classification",
+        ylab = "Nombre d'observations")
+```
+
+```{r}
+library(ggplot2)
+
+# Créer un graphique montrant le nombre de prélèvements par commune
+ggplot(data = new_db_chlordecone, aes(x = COMMU_LAB)) +
+  geom_bar(fill = "blue") +
+  labs(title = "Nombre de prélèvements par commune",
+       x = "Commune",
+       y = "Nombre de prélèvements") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 ```{r}
 
 #test statistique
@@ -63,6 +244,7 @@ resultat_test <- wilcox.test(new_db_chlordecone$Taux_chlordecone, data = new_db_
 resultat_test
 ```
 ```{r}
+library(corrplot)
 # L'Indice de Position Topographique (TPI)
 # Calculer la matrice de corrélation entre les variables
 correlation_matrix <- cor(new_db_chlordecone[c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean","mnt.pente_mean","mnt.tpi_mean" )])
@@ -70,6 +252,8 @@ correlation_matrix <- cor(new_db_chlordecone[c("Taux_chlordecone", "moyenne_pulv
 # Afficher la matrice de corrélation
 print(correlation_matrix)
 
+# Afficher le graphe de la matrice de corrélation
+corrplot(correlation_matrix, method = "circle", type = "upper", order = "hclust", tl.col = "black", tl.srt = 45)
 ```
 ```{r}
 # Créer un modèle de régression linéaire
@@ -78,11 +262,12 @@ modele_regression <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition
 # Afficher un résumé du modèle
 summary(modele_regression)
 
+# Tracer le graphique à partir du modèle de régression
+plot(modele_regression)
+
 ```
 ```{r}
 library(ggplot2)
-
-# Supposons que votre jeu de données s'appelle "data" et qu'il contient les colonnes "COMMU_LAB", "ANNEE" et "Taux_chlordecone"
 
 # Créer une liste vide pour stocker les graphiques
 plots <- list()
@@ -184,5 +369,8 @@ ggplot(data_filtree, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotation des étiquettes de l'axe x pour une meilleure lisibilité
 
+```
+```{r}
+data_filtree
 ```
 
