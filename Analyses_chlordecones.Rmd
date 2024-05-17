@@ -10,9 +10,32 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown
+```{r}
+library("corrplot")
+library(dplyr)
+#install.packages("purrr")
+library(viridis)
+#install.packages("ggpubr")
+#install.packages("factoextra")
+library(RColorBrewer)
+#install.packages("fmsb")
+library(fmsb)
+library(ggplot2)
+library(tidyr)
+library(rstatix)
+library(sf)
+library(ggmap)
+# Charger la librairie caret
+library(caret)
+library(stats)
+library(reshape2)
+library(purrr)
+library(ggpubr)
+library(factoextra)
+```
 
 ```{r}
-library(dplyr)
+
 
 # Regrouper les données par commune et zone, et calculer les statistiques résumées
 donnees_groupees <- new_db_chlordecone %>%
@@ -29,7 +52,6 @@ print(donnees_groupees)
 ```
 
 ```{r}
-library(dplyr)
 
 # Définir la fonction
 tableau_commune_zone <- function(data, commune) {
@@ -54,21 +76,32 @@ db_commune = tableau_commune_zone(new_db_chlordecone, "AJOUPA BOUILLON")
 
 ```
 ```{r}
-# Tracer le graphe avec des couleurs pour chaque commune
-ggplot(new_db_chlordecone, aes(x = ANNEE, y = Taux_chlordecone, color = COMMU_LAB)) +
-  geom_line() +
-  labs(title = "Évolution du chlordecone par commune",
-       x = "Année",
-       y = "Taux de chlordecone") +
-  scale_color_discrete(name = "Commune")
 
+
+# Grouper les données par commune et calculer le nombre total de prélèvements par commune
+total_prelevements_par_commune <- new_db_chlordecone %>%
+  group_by(COMMU_LAB) %>%
+  summarize(Total_prelevements = n())
+total_prelevements_par_commune 
+
+# Sélectionner les communes avec au moins 60 % de prélèvements
+communes_60_pourcent <- total_prelevements_par_commune %>%
+  filter((Total_prelevements) >= 200) %>%
+  select(COMMU_LAB)
+
+# Filtrer les données initiales pour ne garder que les lignes des communes sélectionnées
+nouvelle_table <- new_db_chlordecone %>%
+  filter(COMMU_LAB %in% communes_60_pourcent$COMMU_LAB)
+nouvelle_table
+unique(nouvelle_table$COMMU_LAB)
 ```
+
 ```{r}
 # Sélection des variables pour la classification
 vars <- c("moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean","Taux_chlordecone")
 
 # Normalisation des données
-scaled_data <- scale(new_db_chlordecone[vars])
+scaled_data <- scale(nouvelle_table[vars])
 
 # Choix du nombre de clusters (vous pouvez ajuster ce paramètre selon vos besoins)
 k <- 3
@@ -77,46 +110,90 @@ k <- 3
 kmeans_result <- kmeans(scaled_data, centers = k)
 
 # Ajout des étiquettes de cluster à vos données
-new_db_chlordecone$Cluster <- as.factor(kmeans_result$cluster)
+nouvelle_table$Cluster <- as.factor(kmeans_result$cluster)
 
 # Affichage des résultats
-table(new_db_chlordecone$Cluster)
+table(nouvelle_table$Cluster)
 
 
 ```
 
 ```{r}
-# Nuage de points des deux premières variables avec couleur par cluster
-plot(scaled_data[, 1], scaled_data[, 2], col = kmeans_result$cluster, 
-     main = "Nuage de points avec couleur par cluster", 
-     xlab = "Variable 1", ylab = "Variable 2")
-legend("topright", legend = paste("Cluster", 1:k), col = 1:k, pch = 19, cex = 1)
+fviz_cluster(kmeans_result, data = scaled_data,
+             palette = c("#2E9FDF", "#00AFBB", "#E7B800"), 
+             geom = "point",
+             ellipse.type = "convex", 
+             ggtheme = theme_bw()
+             )
+```
+
+
+```{r}
+# Réduction de dimension en utilisant l'ACP
+res.pca <- prcomp(scaled_data,  scale = TRUE)
+# Coordonnées des individus
+ind.coord <- as.data.frame(get_pca_ind(res.pca)$coord)
+# Ajouter les clusters obtenus à l'aide de l'algorithme k-means
+ind.coord$cluster <- factor(kmeans_result$cluster)
+res.pca
+
 
 ```
 ```{r}
-# Diagramme en boîte pour chaque variable par cluster
-par(mfrow = c(1, length(vars)))
-for (i in seq_along(vars)) {
-  boxplot(new_db_chlordecone[[vars[i]]] ~ new_db_chlordecone$Cluster, main = paste("Diagramme en boîte de", vars[i]), xlab = "Cluster", ylab = vars[i])
-}
+eigenvalue <- round(get_eigenvalue(res.pca), 1)
+variance.percent <- eigenvalue$variance.percent
+head(eigenvalue)
+```
+```{r}
+ggscatter(
+  ind.coord, x = "Dim.1", y = "Dim.2", 
+  color = "cluster", palette = "npg", ellipse = TRUE, ellipse.type = "convex",
+   size = 1.5,  legend = "right", ggtheme = theme_bw(),
+  xlab = paste0("Dim 1 (", variance.percent[1], "% )" ),
+  ylab = paste0("Dim 2 (", variance.percent[2], "% )" )
+) +
+  stat_mean(aes(color = cluster), size = 4)
+```
+
+
+```{r}
+fviz_eig(res.pca, addlabels = TRUE, ylim = c(0, 50))
+# Color by cos2 values: quality on the factor map
+fviz_pca_var(res.pca, col.var = "cos2",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             repel = TRUE # Avoid text overlapping
+             )
 
 ```
 ```{r}
-# Sélection des variables pour la PCA
-vars <- c("moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean", "Taux_chlordecone")
 
-# PCA
-pca_result <- prcomp(new_db_chlordecone[vars], scale. = TRUE)  # Scale. = TRUE pour standardiser les variables
 
-# Résumé de la PCA
-summary(pca_result)
-
-# Visualisation des résultats
-biplot(pca_result, scale = 0)  # biplot pour afficher à la fois les variables et les individus sur le même graphique
+var <- get_pca_var(res.pca)
+var
+corrplot(var$cos2, is.corr=FALSE)
 
 ```
 ```{r}
-library(dplyr)
+set.seed(123)
+res.km <- kmeans(var$coord, centers = 3, nstart = 25)
+grp <- as.factor(res.km$cluster)
+# Color variables by groups
+fviz_pca_var(res.pca, col.var = grp, 
+             palette = c("#0073C2FF", "#EFC000FF", "#868086FF"),
+             legend.title = "Cluster")
+```
+```{r}
+# Exemple d'utilisation du test de Kolmogorov-Smirnov
+x <- nouvelle_table$Taux_chlordecone
+test_ks <- ks.test(x, "pnorm", mean = mean(x), sd = sd(x))  # Test si les données dans 'x' suivent une distribution normale
+
+# Afficher les résultats du test
+print(test_ks)
+
+```
+
+```{r}
+
 
 # Regrouper les données par commune et calculer la moyenne du taux de chlordecone
 moyennes_par_commune <- new_db_chlordecone %>%
@@ -182,7 +259,7 @@ barplot(table(new_db_chlordecone$Classification),
 ```
 
 ```{r}
-library(ggplot2)
+
 
 # Créer un graphique montrant le nombre de prélèvements par commune
 ggplot(data = new_db_chlordecone, aes(x = COMMU_LAB)) +
@@ -224,10 +301,8 @@ hist(residus_transformes, main = "Histogramme des résidus transformés", xlab =
 
 ```
 ```{r}
-#install.packages("car")
 
-# Charger le package
-#library(car)
+
 # Appliquer le test de Levene pour vérifier l'homoscédasticité des résidus transformés
 leveneTest(residus_transformes ~ COMMU_LAB, data = new_db_chlordecone)
 ```
@@ -306,8 +381,8 @@ seuil <- 10
 communes_a_conserver <- nombre_prelevements$COMMU_LAB[nombre_prelevements$Annee >= seuil]
 
 # Filtrer les données pour ne conserver que les prélèvements des communes à conserver
-plots_histogramme <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
-  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+plots_histogramme <- lapply(unique(new_db_chlordecone$COMMU_LAB), function(commune) {
+  commune_data <- subset(new_db_chlordecone, COMMU_LAB == commune)
   p <- ggplot(commune_data, aes(x = Taux_chlordecone)) +
     geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
     labs(title = paste("Histogramme des préférences pour", commune),
@@ -324,8 +399,8 @@ plots_histogramme
 ```
 ```{r}
 # Tracer les graphiques en courbes pour chaque commune séparément
-plots <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
-  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+plots <- lapply(unique(new_db_chlordecone$COMMU_LAB), function(commune) {
+  commune_data <- subset(new_db_chlordecone, COMMU_LAB == commune)
   p <- ggplot(commune_data, aes(x = ANNEE, y = Taux_chlordecone)) +
     geom_line() +
     labs(title = paste("Dégradation du chlordecone pour", commune),
@@ -342,8 +417,8 @@ plots
 library(ggplot2)
 
 # Tracer des graphiques en aire empilée pour chaque commune séparément
-plots_aires_empilees <- lapply(unique(data_filtree$COMMU_LAB), function(commune) {
-  commune_data <- subset(data_filtree, COMMU_LAB == commune)
+plots_aires_empilees <- lapply(unique(new_db_chlordecone$COMMU_LAB), function(commune) {
+  commune_data <- subset(new_db_chlordecone, COMMU_LAB == commune)
   p <- ggplot(commune_data, aes(x = ANNEE, y = Taux_chlordecone, fill = ANNEE)) +
     geom_area() +
     labs(title = paste("Préférences en aire empilée pour", commune),
@@ -361,7 +436,7 @@ plots_aires_empilees
 library(ggplot2)
 
 # Tracer un histogramme en barres regroupé pour les préférences par commune
-ggplot(data_filtree, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE)) +
+ggplot(new_db_chlordecone, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Histogramme en barres regroupées des préférences par commune",
        x = "Commune",
@@ -371,6 +446,5 @@ ggplot(data_filtree, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE)) +
 
 ```
 ```{r}
-data_filtree
 ```
 
