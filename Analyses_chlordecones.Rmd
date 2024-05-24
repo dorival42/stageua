@@ -320,7 +320,7 @@ resultat_test
 ```
 ```{r}
 library(corrplot)
-# L'Indice de Position Topographique (TPI)
+
 # Calculer la matrice de corrélation entre les variables
 correlation_matrix <- cor(new_db_chlordecone[c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean","mnt.pente_mean","mnt.tpi_mean" )])
 
@@ -330,6 +330,96 @@ print(correlation_matrix)
 # Afficher le graphe de la matrice de corrélation
 corrplot(correlation_matrix, method = "circle", type = "upper", order = "hclust", tl.col = "black", tl.srt = 45)
 ```
+```{r}
+
+
+# Filtrer les communes ayant des prélèvements sur trois années différentes
+nombre_prelevements <- new_db_chlordecone %>%
+  group_by(COMMU_LAB) %>%
+  summarize(annees = n_distinct(ANNEE))
+
+
+
+# Calculer et afficher la matrice de corrélation pour chaque commune
+unique_communes <- unique(new_db_chlordecone$COMMU_LAB)
+
+for (commune in unique_communes) {
+  commune_data <- new_db_chlordecone %>%
+    filter(COMMU_LAB == commune)
+  
+
+  
+  if (nrow(commune_data) > 1) {  # Vérifier qu'il y a plus d'une ligne pour calculer la corrélation
+    correlation_matrix <- cor(commune_data[c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean")], use = "complete.obs")
+    
+if (any(is.na(correlation_matrix))) {
+      next  # Ignorer cette commune si la matrice de corrélation contient des NA
+    }
+    
+    print(paste("Matrice de corrélation pour la commune:", commune))
+    print(correlation_matrix)
+    
+    # Afficher le graphe de la matrice de corrélation
+    corrplot(correlation_matrix, method = "circle", type = "upper", order = "hclust", 
+             tl.col = "black", tl.srt = 45, title = paste("Corrélation -", commune))
+  }
+}
+
+```
+
+
+```{r}
+# Charger les bibliothèques nécessaires
+library(ggplot2)
+library(factoextra)
+library(dplyr)
+
+# Filtrer les communes ayant des prélèvements sur trois années différentes
+nombre_prelevements <- new_db_chlordecone %>%
+  group_by(COMMU_LAB) %>%
+  summarize(annees = n_distinct(ANNEE))
+
+seuil <- 3
+communes_a_conserver <- nombre_prelevements %>%
+  filter(annees >= seuil) %>%
+  pull(COMMU_LAB)
+
+data_filtree <- new_db_chlordecone %>%
+  filter(COMMU_LAB %in% communes_a_conserver)
+
+# Calculer la tendance du taux de chlordecone pour chaque ville
+tendances <- data_filtree %>%
+  group_by(COMMU_LAB) %>%
+  summarize(tendance = coef(lm(Taux_chlordecone ~ ANNEE, data = .))[2])
+
+# Vérifier le nombre de points de données distincts
+distinct_points <- length(unique(tendances$tendance))
+
+# Ajuster le nombre de clusters en fonction du nombre de points distincts
+num_clusters <- min(3, distinct_points)
+
+# Effectuer le clustering sur les tendances
+set.seed(123)  # Pour la reproductibilité
+km_res <- kmeans(tendances$tendance, centers = num_clusters)
+
+# Ajouter les résultats du clustering aux données
+tendances$cluster <- km_res$cluster
+
+# Visualiser les clusters
+fviz_cluster(list(data = tendances, cluster = km_res$cluster),
+             geom = "point",
+             stand = FALSE,
+             ellipse = TRUE,
+             show.clust.cent = TRUE,
+             ggtheme = theme_minimal())
+
+# Afficher les résultats des clusters
+print(tendances)
+
+
+
+```
+
 ```{r}
 # Créer un modèle de régression linéaire
 modele_regression <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
