@@ -6,4 +6,6 @@
 \contentsline {section}{\numberline {0.4}Lacunes}{5}{}%
 \contentsline {section}{\numberline {0.5}Données utilisées}{6}{}%
 \contentsline {section}{\numberline {0.6}Méthodes analytiques}{6}{}%
-\contentsline {section}{\numberline {0.7}Stratégies d'évaluation des résultats}{7}{}%
+\contentsline {section}{\numberline {0.7}Logiciel et Packages Utilisés}{7}{}%
+\contentsline {section}{\numberline {0.8}Stratégies d'évaluation des résultats}{8}{}%
+\contentsline {section}{\numberline {0.9}Analyse statistiques descriptive}{9}{}%

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library("corrplot")
 library(dplyr)
-#install.packages("purrr")
+#install.packages("randomForest")
 library(viridis)
 #install.packages("ggpubr")
 #install.packages("factoextra")
@@ -33,23 +33,27 @@ library(purrr)
 library(ggpubr)
 library(factoextra)
 ```
+```{r}
+summary(new_db_chlordecone[, c("moyenne_pulviometrie","COMMU_LAB","mnt.exposition_mean","mnt.ombrage_mean","Taux_chlordecone")] )
+```
+
+
 
 ```{r}
 
-
-# Regrouper les données par commune et zone, et calculer les statistiques résumées
 donnees_groupees <- new_db_chlordecone %>%
   group_by(COMMU_LAB, Adresse_parcelle, Annee) %>%
   summarise(
     Moyenne_Taux_chlordecone = mean(Taux_chlordecone),
     Ecart_type_Taux_chlordecone = sd(Taux_chlordecone),
-    Nombre_prelevements = n()
+    Nombre_prelevements = n(),
+    .groups = "drop"  # Spécifier .groups pour éviter le message d'erreur
   )
-
 # Afficher les données regroupées
 print(donnees_groupees)
 
 ```
+
 
 ```{r}
 
@@ -94,6 +98,7 @@ nouvelle_table <- new_db_chlordecone %>%
   filter(COMMU_LAB %in% communes_60_pourcent$COMMU_LAB)
 nouvelle_table
 unique(nouvelle_table$COMMU_LAB)
+sum(total_prelevements_par_commune$Total_prelevements)
 ```
 
 ```{r}
@@ -282,6 +287,16 @@ qqnorm(resid(modele))
 qqline(resid(modele))
 ```
 ```{r}
+
+modele <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
+
+# Tracer le graphique Q-Q des résidus du modèle
+qqnorm(resid(modele))
+qqline(resid(modele))
+
+```
+
+```{r}
 # Calculer les résidus du modèle ANOVA
 residus <- resid(modele)
 
@@ -302,7 +317,9 @@ hist(residus_transformes, main = "Histogramme des résidus transformés", xlab =
 ```
 ```{r}
 
-
+#install.packages("car")
+library(car)
+library(carData)
 # Appliquer le test de Levene pour vérifier l'homoscédasticité des résidus transformés
 leveneTest(residus_transformes ~ COMMU_LAB, data = new_db_chlordecone)
 ```
@@ -312,11 +329,41 @@ Cela suggère qu'il y a des différences significatives entre les variances des 
 
 Lorsque le test de Levene est significatif, cela peut remettre en question l'interprétation des résultats de l'ANOVA. Dans ce cas, vous devrez peut-être utiliser des méthodes alternatives qui ne reposent pas sur l'hypothèse d'homoscédasticité, comme les tests robustes ou les méthodes de permutation, ou envisager des transformations supplémentaires des données pour stabiliser les variances. Vous pouvez également examiner de plus près les raisons potentielles de la violation de l'homoscédasticité, comme la présence de valeurs aberrantes ou la nécessité de modéliser des interactions supplémentaires.
 ```{r}
+library(ggplot2)
+
+# Diagramme à boîtes par commune
+ggplot(new_db_chlordecone, aes(x = as.factor(COMMU_LAB), y = Taux_chlordecone)) +
+  geom_boxplot() +
+  xlab("Commune") +
+  ylab("Taux de Chlordecone") +
+  ggtitle("Distribution des Taux de Chlordecone par Commune") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+# Modèle de régression
+modele <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
+
+# Résidus vs valeurs ajustées
+residus <- resid(modele)
+valeurs_ajustees <- fitted(modele)
+
+ggplot(data = data.frame(residus, valeurs_ajustees), aes(x = valeurs_ajustees, y = residus)) +
+  geom_point() +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  xlab("Valeurs Ajustées") +
+  ylab("Résidus") +
+  ggtitle("Résidus vs Valeurs Ajustées") +
+  theme_minimal()
+
+```
+
+
+```{r}
 # Appliquer le test de Mann-Whitney
-resultat_test <- wilcox.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone)
+resultat_test1 <- wilcox.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone)
 # Appliquer le test de Welch
-#resultat_test <- t.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone, var.equal = FALSE)
+resultat_test <- t.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone, var.equal = FALSE)
 resultat_test
+resultat_test1
 ```
 ```{r}
 library(corrplot)
@@ -366,6 +413,72 @@ if (any(is.na(correlation_matrix))) {
 }
 
 ```
+```{r}
+data_clean <- new_db_chlordecone %>%
+  mutate(across(everything(), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .)))
+
+# Normalisation des données
+data_normalized <- scale(data_clean[, c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean")])
+
+summary(data_normalized)
+```
+
+```{r}
+# Appliquer l'algorithme K-means
+set.seed(123) # Pour la reproductibilité
+kmeans_result <- kmeans(data_normalized, centers = 3)
+kmeans_result
+# Visualiser les clusters
+fviz_cluster(kmeans_result, data = data_normalized, geom = "point")
+
+```
+
+```{r}
+
+
+# Convertir la colonne 'adresse_parcelle' en facteur
+new_db_chlordecone$Adresse_parcelle <- factor(new_db_chlordecone$Adresse_parcelle)
+
+# Convertir les facteurs en valeurs numériques
+new_db_chlordecone$Adresse_parcelle_numeric <- as.numeric(new_db_chlordecone$Adresse_parcelle)
+new_db_chlordecone$Adresse_parcelle_numeric
+# Sélectionner les colonnes pertinentes pour le clustering
+cluster_data <- new_db_chlordecone %>%
+  select(Adresse_parcelle_numeric, Taux_chlordecone, moyenne_pulviometrie, mnt.exposition_mean, mnt.ombrage_mean, mnt.pente_mean, mnt.tpi_mean)
+
+# Transformer les données catégorielles en variables numériques si nécessaire
+# Ici, je suppose que 'adresse_parcelle' est déjà numérique. Si ce n'est pas le cas, utilisez des techniques d'encodage appropriées.
+
+# Normalisation des données
+scaled_data <- scale(cluster_data[, -1])  # Exclure la colonne 'adresse_parcelle'
+
+# Appliquer l'algorithme de clustering
+kmeans_result <- kmeans(scaled_data, centers = 3)
+
+# Visualiser les clusters
+fviz_cluster(kmeans_result, data = scaled_data)
+
+# Interpréter les clusters
+
+```
+
+```{r}
+# Ajouter la colonne adresse_parcelle aux résultats de clustering
+cluster_results <- cbind(cluster_data, Cluster = kmeans_result$cluster, Adresse_parcelle = new_db_chlordecone$Adresse_parcelle)
+
+# Trier les résultats par cluster et par taux de chlordecone décroissant
+sorted_results <- cluster_results[order(cluster_results$Cluster, -cluster_results$Taux_chlordecone), ]
+
+# Afficher les noms des parcelles les plus contaminées dans chaque cluster
+for (i in unique(sorted_results$Cluster)) {
+  cat("Cluster", i, ":\n")
+  cat(head(sorted_results$Adresse_parcelle[sorted_results$Cluster == i], 5), "\n")
+  cat("\n")
+}
+
+
+```
+
 
 
 ```{r}
@@ -391,7 +504,7 @@ data_filtree <- new_db_chlordecone %>%
 tendances <- data_filtree %>%
   group_by(COMMU_LAB) %>%
   summarize(tendance = coef(lm(Taux_chlordecone ~ ANNEE, data = .))[2])
-
+print(tendances)
 # Vérifier le nombre de points de données distincts
 distinct_points <- length(unique(tendances$tendance))
 
