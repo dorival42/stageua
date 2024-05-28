@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  24 MAY 2024 15:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  28 MAY 2024 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -111,11 +111,11 @@ g>] [1
 
 ] (memoire_dorival.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 3.
+(Font)              <7> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 3.
+(Font)              <5> on input line 4.
 
-Overfull \hbox (8.2507pt too wide) in paragraph at lines 5--5
+Overfull \hbox (8.2507pt too wide) in paragraph at lines 6--6
  [][] []\OT1/cmr/m/n/10 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Seg
 radation du chlord^^Secone []  
  []
@@ -135,7 +135,7 @@ Overfull \hbox (20.75061pt too wide) in paragraph at lines 43--44
 [3
 
 ]
-Overfull \hbox (70.12276pt too wide) in paragraph at lines 58--58
+Overfull \hbox (70.12276pt too wide) in paragraph at lines 59--59
 []\OT1/cmr/bx/n/14.4 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Segrad
 ation
  []
@@ -143,36 +143,26 @@ ation
 [4
 
 ]
-Overfull \hbox (10.52834pt too wide) in paragraph at lines 66--68
+Overfull \hbox (10.52834pt too wide) in paragraph at lines 67--69
 \OT1/cmr/m/n/10 Malgr^^Se les progr^^Res r^^Sealis^^Ses dans la compr^^Sehensio
 n de la d^^Segradation du chlord^^Secone,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--68
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
 
  []
 
 [5] [6
 
 ]
-Overfull \hbox (11.47282pt too wide) in paragraph at lines 89--91
+Overfull \hbox (11.47282pt too wide) in paragraph at lines 93--95
 \OT1/cmr/m/n/10 em-ploy^^Sees pour re-grouper les par-celles en fonc-tion de le
 ur pro-fil de d^^Secontamination
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--91
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
+Underfull \hbox (badness 10000) in paragraph at lines 93--95
 
  []
 
@@ -206,51 +196,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 109--113
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
-Overfull \hbox (3.86171pt too wide) in paragraph at lines 133--135
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 113--117
+
+ []
+
+
+Overfull \hbox (3.86171pt too wide) in paragraph at lines 137--139
 \OT1/cmr/m/n/10 - En-fin, nous pour-rions con-sul-ter des doc-u-ments du min-is
 t^^Rere de la Sant^^Se publique
  []
 
 [8]
-Overfull \hbox (5.69495pt too wide) in paragraph at lines 136--139
+Overfull \hbox (5.69495pt too wide) in paragraph at lines 140--143
 []\OT1/cmr/m/n/10 En util-isant une com-bi-nai-son de ces strat^^Segies, nous s
 erons en mesure d'^^Sevaluer
  []
 
 
-Overfull \hbox (17.63948pt too wide) in paragraph at lines 136--139
+Overfull \hbox (17.63948pt too wide) in paragraph at lines 140--143
 \OT1/cmr/m/n/10 de mani^^Rere ap-pro-fondie les r^^Sesultats de notre ^^Setude 
 sur la d^^Segradation du chlord^^Secone
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--139
+Underfull \hbox (badness 10000) in paragraph at lines 140--143
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
+Underfull \hbox (badness 10000) in paragraph at lines 149--151
 
  []
 
@@ -259,25 +259,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--147
 File: moyenne_taux_chlordecone_par_commune.png Graphic file (type png)
 <use moyenne_taux_chlordecone_par_commune.png>
 Package pdftex.def Info: moyenne_taux_chlordecone_par_commune.png  used on inpu
-t line 151.
+t line 155.
 (pdftex.def)             Requested size: 345.0pt x 170.12744pt.
 <nombre_prel_par_commune.png, id=42, 951.555pt x 534.49687pt>
 File: nombre_prel_par_commune.png Graphic file (type png)
 <use nombre_prel_par_commune.png>
-Package pdftex.def Info: nombre_prel_par_commune.png  used on input line 158.
+Package pdftex.def Info: nombre_prel_par_commune.png  used on input line 162.
 (pdftex.def)             Requested size: 345.0pt x 193.78888pt.
- [10 <./moyenne_taux_chlordecone_par_commune.png> <./nombre_prel_par_commune.pn
-g>] (memoire_dorival.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+[10 <./moyenne_taux_chlordecone_par_commune.png> <./nombre_prel_par_commune.png
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 168--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--183
+
+ []
+
+
+Overfull \hbox (7.60135pt too wide) in paragraph at lines 184--185
+\OT1/cmr/m/n/10 r^^Segression. Elles cr^^Seent un graphique Q-Q (quantile-quant
+ile) qui per-met d'^^Sevaluer
+ []
+
+<graphiqueQQ.png, id=48, 794.2172pt x 467.49657pt>
+File: graphiqueQQ.png Graphic file (type png)
+<use graphiqueQQ.png>
+Package pdftex.def Info: graphiqueQQ.png  used on input line 189.
+(pdftex.def)             Requested size: 345.0pt x 203.08116pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--197
+
+ []
+
+[11 <./graphiqueQQ.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+[12] (memoire_dorival.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1343 strings out of 474485
- 22983 string characters out of 5742267
+ 1351 strings out of 474485
+ 23154 string characters out of 5742267
  1934542 words of memory out of 5000000
- 23669 multiletter control sequences out of 15000+600000
+ 23677 multiletter control sequences out of 15000+600000
  561441 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,930b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -288,9 +339,9 @@ s/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/pdorival/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/pdorival/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/pdorival
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on memoire_dorival.pdf (11 pages, 1223060 bytes).
+Output written on memoire_dorival.pdf (13 pages, 1249241 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

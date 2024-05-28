@@ -306,6 +306,18 @@ hist(residus, main = "Histogramme des résidus", xlab = "Résidus", ylab = "Fré
 ```
 
 ```{r}
+# Installer et charger le package "robustbase"
+#install.packages("robustbase")
+library(robustbase)
+
+# Appliquer la régression linéaire robuste
+modele_robuste <- lmrob(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
+summary(modele_robuste)
+
+```
+
+
+```{r}
 # Appliquer une transformation log sur les résidus
 residus_transformes <- log(residus + 1)
 
@@ -359,11 +371,11 @@ ggplot(data = data.frame(residus, valeurs_ajustees), aes(x = valeurs_ajustees, y
 
 ```{r}
 # Appliquer le test de Mann-Whitney
-resultat_test1 <- wilcox.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone)
+wilcox_test <- wilcox.test(new_db_chlordecone$Taux_chlordecone, mu = 0, correct = TRUE)
 # Appliquer le test de Welch
-resultat_test <- t.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone, var.equal = FALSE)
-resultat_test
-resultat_test1
+#resultat_test <- t.test(new_db_chlordecone$Taux_chlordecone, data = new_db_chlordecone, var.equal = FALSE)
+#resultat_test
+wilcox_test
 ```
 ```{r}
 library(corrplot)
@@ -649,5 +661,45 @@ ggplot(new_db_chlordecone, aes(x = COMMU_LAB, y = Taux_chlordecone, fill = ANNEE
 
 ```
 ```{r}
+library(MASS)
+library(car)
+library(cluster)
+library(factoextra)
+library(dplyr)
+
+# Supposons que vos données soient dans un dataframe nommé 'new_db_chlordecone'
+
+# Vérification et traitement des valeurs infinies et manquantes
+new_db_chlordecone <- new_db_chlordecone %>%
+  mutate(across(everything(), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .))) %>%
+  mutate(across(everything(), ~ ifelse(is.infinite(.), mean(., na.rm = TRUE), .)))
+
+# Normalisation des données
+data_normalized <- scale(new_db_chlordecone[, c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean")])
+
+# Ajout de la colonne Adresse_parcelle_numeric (supposons que c'est déjà fait)
+data_normalized <- cbind(data_normalized, Adresse_parcelle_numeric = new_db_chlordecone$Adresse_parcelle_numeric)
+
+# Réaliser le clustering k-means avec un nombre d'itérations augmenté
+set.seed(123)
+kmeans_result <- kmeans(data_normalized, centers = 3, nstart = 25, iter.max = 1000)
+
+# Afficher les résultats
+print(kmeans_result)
+
+# Visualiser les clusters
+fviz_cluster(kmeans_result, data = data_normalized, geom = "point", ellipse.type = "convex", ggtheme = theme_minimal())
+
+# Ajouter les noms des parcelles aux clusters
+new_db_chlordecone$Cluster <- kmeans_result$cluster
+
+# Identifier les parcelles les plus contaminées dans chaque cluster
+parcelles_contaminees <- new_db_chlordecone %>%
+  group_by(Cluster) %>%
+  top_n(10, Taux_chlordecone) %>%
+  select(Cluster, Adresse_parcelle, Taux_chlordecone)
+
+print(parcelles_contaminees)
+
 ```
 

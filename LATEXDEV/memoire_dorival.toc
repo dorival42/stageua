@@ -1,10 +1,14 @@
 \contentsline {chapter}{Remerciements}{1}{}%
 \contentsline {chapter}{Introduction}{3}{}%
+\contentsline {chapter}{État des connaissances sur la dégradation du chlordécone dans les sols agricoles martiniquais.}{4}{}%
 \contentsline {section}{\numberline {0.1}Effets du chlordécone sur l'environnement et la santé humaine}{4}{}%
+\contentsline {section}{Effets du chlordécone sur l'environnement et la santé humaine}{4}{}%
 \contentsline {section}{\numberline {0.2}Processus de dégradation du chlordécone}{4}{}%
 \contentsline {section}{\numberline {0.3}Facteurs environnementaux influençant la dégradation du chlordécone}{4}{}%
 \contentsline {section}{\numberline {0.4}Lacunes}{5}{}%
+\contentsline {chapter}{Méthodologie}{6}{}%
 \contentsline {section}{\numberline {0.5}Données utilisées}{6}{}%
+\contentsline {section}{Données utilisées}{6}{}%
 \contentsline {section}{\numberline {0.6}Méthodes analytiques}{6}{}%
 \contentsline {section}{\numberline {0.7}Logiciel et Packages Utilisés}{7}{}%
 \contentsline {section}{\numberline {0.8}Stratégies d'évaluation des résultats}{8}{}%

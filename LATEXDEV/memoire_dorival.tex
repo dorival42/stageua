@@ -45,9 +45,10 @@ Pour répondre à cette question, nous adopterons une approche multidisciplinair
 En fin de compte, cette recherche vise à enrichir notre compréhension des processus de dégradation du chlordécone dans un contexte insulaire et tropical, et à fournir des connaissances fondamentales pour orienter les politiques de gestion environnementale et les pratiques agricoles durables dans la région de la Martinique.
 
 \chapter*{État des connaissances sur la dégradation du chlordécone dans les sols agricoles martiniquais.}
+\addcontentsline{toc}{chapter}{État des connaissances sur la dégradation du chlordécone dans les sols agricoles martiniquais.}
 
 \section{Effets du chlordécone sur l'environnement et la santé humaine}
-
+\addcontentsline{toc}{section}{Effets du chlordécone sur l'environnement et la santé humaine}
 Le chlordécone, un pesticide organochloré largement utilisé dans les plantations de bananes en Martinique jusqu'au début des années 1990, est connu pour ses effets néfastes sur l'environnement et la santé humaine. Des études ont montré sa persistance dans les sols agricoles, son accumulation dans la chaîne alimentaire et son association avec des risques pour la santé, notamment des effets neurotoxiques et cancérigènes chez l'homme.
 
 \section{Processus de dégradation du chlordécone}
@@ -71,10 +72,13 @@ Dans cette section,on met en évidence l'importance cruciale de comprendre les p
 
 
 \chapter*{Méthodologie}
+\addcontentsline{toc}{chapter}{Méthodologie}
+
 
 La méthodologie adoptée dans cette étude est cruciale pour répondre à la problématique posée et atteindre les objectifs fixés. Cette section détaille les données utilisées, les méthodes analytiques appliquées et les étapes suivies pour mener à bien l'analyse des facteurs environnementaux influençant la dégradation du chlordécone dans les sols agricoles de la Martinique sur une période de 15 ans.
 
 \section{Données utilisées}
+\addcontentsline{toc}{section}{Données utilisées}
 
 Les données utilisées dans cette étude ont été fournies par le Dr Zongo Pascal, Docteur en mathématiques et professeur à l'Université des Antilles. Elles sont constituées de deux fichiers au format CSV : l'un contenant les données brutes et l'autre contenant les explications sur la signification des données et les définitions des colonnes.
 
@@ -158,5 +162,47 @@ Selon les résultats, environ 21 000 prélèvements ont été effectués sur 35 
 \linewidth]{nombre_prel_par_commune.png}
 \caption{Nombre de prélèvement par commune}
 \end{figure}
+
+\textbf{Identification des tendances principales dans la dégradation du chlordécone et des facteurs environnementaux influençant ce processus.} \\ \\ 
+
+Vérification de la normalité des résidus et  création d'un modèle de régression linéaire multiple avec les variables environnementales:\\  
+Description du Modèle de Régression Linéaire Multiple\\
+Objectif : Créer un modèle de régression linéaire multiple pour prédire le Taux de Chlordécone à partir de variables environnementales.\\
+
+Variables :\\
+
+Variable dépendante :\\
+
+Taux\_chlordecone : La variable dépendante qu'on essaie de prédire.\\
+Variables indépendantes :\\
+moyenne\_pulviometrie : Moyenne des précipitations sur les sols.\\
+mnt.exposition\_mean : Direction horizontale de la pente du terrain en degrés.\\
+mnt.ombrage\_mean : Aspect des ombres du terrain.\\
+mnt.pente\_mean : Inclinaison de la pente en degrés.\\
+mnt.tpi\_mean : Indice de position topographique.\\
+
+Sur le logiciel R on utilise les commandes qqnorm(resid(modele)) et qqline(resid(modele)) qui sont utilisées pour visualiser les résidus du modèle de régression. Elles créent un graphique Q-Q (quantile-quantile) qui permet d'évaluer si les résidus suivent une distribution normale. Voici le graphique:
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width = 1
+\linewidth]{graphiqueQQ.png}
+\caption{Graphique Q-Q}
+\end{figure}
+
+Le graphique Q-Q (quantile-quantile) indique que les résidus ne sont pas normalement distribués. Les points qui dévient de manière significative de la ligne suggèrent que les résidus ne suivent pas une distribution normale. 
+Cela peut signaler plusieurs problèmes potentiels, notamment :\\
+Variabilité non constante (hétéroscédasticité) : Les variances des résidus peuvent ne pas être homogènes à travers les observations, ce qui viole une des hypothèses de base de la régression linéaire.\\
+Les valeurs aberrantes peuvent déformer la distribution des résidus.\\
+
+
+
+
+
+Ces déviations par rapport à la normalité des résidus peuvent affecter la validité des inférences statistiques dérivées du modèle. Il est donc important d'identifier et de traiter ces problèmes pour améliorer la qualité et la fiabilité du modèle.\\
+
+A partir de ce modèle on a tracer l'histogramme des 
+
+
 
 \end{document}
