@@ -1,125 +1,214 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.17)  28 MAY 2024 14:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.7)  6 JUN 2024 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./memoire_dorival.tex
 (memoire_dorival.tex
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+L3 programming layer <2024-03-14>
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count187
-\c@chapter=\count188
-\c@section=\count189
-\c@subsection=\count190
-\c@subsubsection=\count191
-\c@paragraph=\count192
-\c@subparagraph=\count193
-\c@figure=\count194
-\c@table=\count195
+\c@part=\count188
+\c@chapter=\count189
+\c@section=\count190
+\c@subsection=\count191
+\c@subsubsection=\count192
+\c@paragraph=\count193
+\c@subparagraph=\count194
+\c@figure=\count195
+\c@table=\count196
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
-y
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
-y
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
- (C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
-s.cfg
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
-
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
-def
+ (C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen141
 \Gin@req@width=\dimen142
+) (C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count197
+\float@exts=\toks18
+\float@box=\box51
+\@float@everytoks=\toks19
+\@floatcapt=\box52
 )
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
-pdftex.def
-File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count196
-\l__pdf_internal_box=\box51
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/cite\chapterbib.sty
+\c@inputfile=\count198
+Package: chapterbib 2010/09/18  v 1.17
+)
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip50
+\f@nch@O@elh=\skip51
+\f@nch@O@erh=\skip52
+\f@nch@O@olh=\skip53
+\f@nch@O@orh=\skip54
+\f@nch@O@elf=\skip55
+\f@nch@O@erf=\skip56
+\f@nch@O@olf=\skip57
+\f@nch@O@orf=\skip58
+)
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/footmisc\footmisc.sty
+Package: footmisc 2023/07/05 v6.0f a miscellany of footnote facilities
+\FN@temptoken=\toks20
+\footnotemargin=\dimen143
+\@outputbox@depth=\dimen144
+Package footmisc Info: Declaring symbol style bringhurst on input line 696.
+Package footmisc Info: Declaring symbol style chicago on input line 704.
+Package footmisc Info: Declaring symbol style wiley on input line 713.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 724.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 744.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 765
+.
+)
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+Package: microtype 2024/03/29 v3.1b Micro-typographical refinements (RS)
+
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count199
+)
+\MT@toks=\toks21
+\MT@tempbox=\box53
+\MT@count=\count266
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1061.
+LaTeX Info: Redefining \leftprotrusion on input line 1062.
+\MT@prot@toks=\toks22
+LaTeX Info: Redefining \rightprotrusion on input line 1081.
+LaTeX Info: Redefining \textls on input line 1392.
+\MT@outer@kern=\dimen145
+LaTeX Info: Redefining \textmicrotypecontext on input line 2013.
+\MT@listname@count=\count267
+
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdfte
+x.def
+File: microtype-pdftex.def 2024/03/29 v3.1b Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 902.
+LaTeX Info: Redefining \lslig on input line 902.
+\MT@outer@space=\skip59
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+File: microtype.cfg 2024/03/29 v3.1b microtype main configuration file (RS)
+)) (C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count268
+\c@@ppsavesec=\count269
+\c@@ppsaveapp=\count270
+)
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdfte
+x.def
+File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count271
+\l__pdf_internal_box=\box54
 ) (memoire_dorival.aux)
 \openout1 = `memoire_dorival.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
-.mkii
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count197
-\scratchdimen=\dimen143
-\scratchbox=\box52
-\nofMPsegments=\count198
-\nofMParguments=\count199
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count266
-\MPscratchDim=\dimen144
-\MPnumerator=\count267
-\makeMPintoPDFobject=\count268
-\everyMPtoPDFconversion=\toks19
+\scratchcounter=\count272
+\scratchdimen=\dimen146
+\scratchbox=\box55
+\nofMPsegments=\count273
+\nofMParguments=\count274
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count275
+\MPscratchDim=\dimen147
+\MPnumerator=\count276
+\makeMPintoPDFobject=\count277
+\everyMPtoPDFconversion=\toks24
 )
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
-f-base.sty
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-bas
+e.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\pdorival\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
-s.cfg
+(C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
+LaTeX Info: Redefining \microtypecontext on input line 14.
+Package microtype Info: Applying patch `item' on input line 14.
+Package microtype Info: Applying patch `toc' on input line 14.
+Package microtype Info: Applying patch `eqnum' on input line 14.
+Package microtype Info: Applying patch `footnote' on input line 14.
+Package microtype Info: Applying patch `verbatim' on input line 14.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 14.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (C:\Users\ETU\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
 <logo.jpg, id=1, 1982.40625pt x 843.15pt>
 File: logo.jpg Graphic file (type jpg)
 <use logo.jpg>
-Package pdftex.def Info: logo.jpg  used on input line 8.
-(pdftex.def)             Requested size: 103.50105pt x 44.01259pt.
- [1
+Package pdftex.def Info: logo.jpg  used on input line 25.
+(pdftex.def)             Requested size: 93.15031pt x 39.61261pt.
+<lmaa.png, id=2, 213.04594pt x 130.98938pt>
+File: lmaa.png Graphic file (type png)
+<use lmaa.png>
+Package pdftex.def Info: lmaa.png  used on input line 31.
+(pdftex.def)             Requested size: 62.09862pt x 38.17981pt.
 
-{C:/Users/pdorival/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.jp
-g>] [1
+[1
+
+{C:/Users/ETU/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.jpg> <.
+/lmaa.png>] [1
 
 ] (memoire_dorival.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 4.
-
-Overfull \hbox (8.2507pt too wide) in paragraph at lines 6--6
- [][] []\OT1/cmr/m/n/10 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Seg
-radation du chlord^^Secone []  
- []
-
 )
 \tf@toc=\write3
 \openout3 = `memoire_dorival.toc'.
@@ -127,52 +216,29 @@ radation du chlord^^Secone []
  [2
 
 ]
-Overfull \hbox (20.75061pt too wide) in paragraph at lines 43--44
-\OT1/cmr/m/n/10 plinaire, com-bi-nant des anal-y-ses statis-tiques avanc^^Sees,
- des tech-niques de mod^^Selisation
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
  []
 
 [3
 
 ]
-Overfull \hbox (70.12276pt too wide) in paragraph at lines 59--59
-[]\OT1/cmr/bx/n/14.4 Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la d^^Segrad
-ation
- []
-
-[4
-
-]
-Overfull \hbox (10.52834pt too wide) in paragraph at lines 67--69
-\OT1/cmr/m/n/10 Malgr^^Se les progr^^Res r^^Sealis^^Ses dans la compr^^Sehensio
-n de la d^^Segradation du chlord^^Secone,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--69
-
- []
-
-[5] [6
-
-]
-Overfull \hbox (11.47282pt too wide) in paragraph at lines 93--95
-\OT1/cmr/m/n/10 em-ploy^^Sees pour re-grouper les par-celles en fonc-tion de le
-ur pro-fil de d^^Secontamination
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--95
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 99--100
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
@@ -182,13 +248,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--102
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
+[]\OT1/cmr/bx/n/14.4 (+20) Facteurs en-vi-ron-nemen-taux in-fluen^^Xcant la
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 107.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 107.
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
-
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[][]\OT1/cmr/m/n/8 (+20) https://sante.gouv.fr/sante-et-environnement/les-plans
+-nationaux-sante-
  []
 
 
@@ -196,152 +267,460 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
+[4
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+]
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
+Underfull \hbox (badness 10000) in paragraph at lines 132--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
+[6
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 148--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--160
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 113--117
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
 
  []
 
 
-Overfull \hbox (3.86171pt too wide) in paragraph at lines 137--139
-\OT1/cmr/m/n/10 - En-fin, nous pour-rions con-sul-ter des doc-u-ments du min-is
-t^^Rere de la Sant^^Se publique
+Underfull \hbox (badness 2035) in paragraph at lines 164--167
+\OT1/cmr/m/n/12 (+20) Nous anal-y-serons les ten-dances tem-porelles des niveau
+x de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 171.
+
+Underfull \hbox (badness 1097) in paragraph at lines 168--176
+\OT1/cmr/m/n/12 (+20) et les vari-ables en-vi-ron-nemen-tales telles que la plu
+-viom^^Setrie,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--176
+
+ []
+
+
+Underfull \hbox (badness 1062) in paragraph at lines 168--176
+\OT1/cmr/m/n/12 (+20) Nous ef-fectuerons une anal-yse de sen-si-bilit^^Se pour 
+^^Sevaluer la
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--176
+
  []
 
 [8]
-Overfull \hbox (5.69495pt too wide) in paragraph at lines 140--143
-[]\OT1/cmr/m/n/10 En util-isant une com-bi-nai-son de ces strat^^Segies, nous s
-erons en mesure d'^^Sevaluer
- []
-
-
-Overfull \hbox (17.63948pt too wide) in paragraph at lines 140--143
-\OT1/cmr/m/n/10 de mani^^Rere ap-pro-fondie les r^^Sesultats de notre ^^Setude 
-sur la d^^Segradation du chlord^^Secone
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 140--143
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--151
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 [9]
-<moyenne_taux_chlordecone_par_commune.png, id=40, 819.8128pt x 404.26031pt>
+<moyenne_taux_chlordecone_par_commune.png, id=48, 819.8128pt x 404.26031pt>
 File: moyenne_taux_chlordecone_par_commune.png Graphic file (type png)
 <use moyenne_taux_chlordecone_par_commune.png>
 Package pdftex.def Info: moyenne_taux_chlordecone_par_commune.png  used on inpu
-t line 155.
+t line 196.
 (pdftex.def)             Requested size: 345.0pt x 170.12744pt.
-<nombre_prel_par_commune.png, id=42, 951.555pt x 534.49687pt>
+ [10]
+<nombre_prel_par_commune.png, id=52, 951.555pt x 534.49687pt>
 File: nombre_prel_par_commune.png Graphic file (type png)
 <use nombre_prel_par_commune.png>
-Package pdftex.def Info: nombre_prel_par_commune.png  used on input line 162.
+Package pdftex.def Info: nombre_prel_par_commune.png  used on input line 203.
 (pdftex.def)             Requested size: 345.0pt x 193.78888pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 210--221
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
-
- []
-
-[10 <./moyenne_taux_chlordecone_par_commune.png> <./nombre_prel_par_commune.png
+[11 <./moyenne_taux_chlordecone_par_commune.png> <./nombre_prel_par_commune.png
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 168--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--173
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--183
-
- []
-
-
-Overfull \hbox (7.60135pt too wide) in paragraph at lines 184--185
-\OT1/cmr/m/n/10 r^^Segression. Elles cr^^Seent un graphique Q-Q (quantile-quant
-ile) qui per-met d'^^Sevaluer
- []
-
-<graphiqueQQ.png, id=48, 794.2172pt x 467.49657pt>
+<graphiqueQQ.png, id=58, 995.21812pt x 477.28313pt>
 File: graphiqueQQ.png Graphic file (type png)
 <use graphiqueQQ.png>
-Package pdftex.def Info: graphiqueQQ.png  used on input line 189.
-(pdftex.def)             Requested size: 345.0pt x 203.08116pt.
+Package pdftex.def Info: graphiqueQQ.png  used on input line 227.
+(pdftex.def)             Requested size: 345.0pt x 165.45667pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--197
-
- []
-
-[11 <./graphiqueQQ.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 231--235
 
  []
 
-[12] (memoire_dorival.aux)
+[12 <./graphiqueQQ.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
+
+ []
+
+<regression.png, id=64, 998.22937pt x 444.15938pt>
+File: regression.png Graphic file (type png)
+<use regression.png>
+Package pdftex.def Info: regression.png  used on input line 245.
+(pdftex.def)             Requested size: 345.0pt x 153.50624pt.
+<logresidus.png, id=65, 1018.55531pt x 362.10281pt>
+File: logresidus.png Graphic file (type png)
+<use logresidus.png>
+Package pdftex.def Info: logresidus.png  used on input line 252.
+(pdftex.def)             Requested size: 345.0pt x 122.6492pt.
+<residustransf.png, id=66, 972.63374pt x 486.31688pt>
+File: residustransf.png Graphic file (type png)
+<use residustransf.png>
+Package pdftex.def Info: residustransf.png  used on input line 261.
+(pdftex.def)             Requested size: 345.0pt x 172.499pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 257--263
+
+ []
+
+[13 <./regression.png> <./logresidus.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+<leneve.png, id=72, 902.6222pt x 144.54pt>
+File: leneve.png Graphic file (type png)
+<use leneve.png>
+Package pdftex.def Info: leneve.png  used on input line 271.
+(pdftex.def)             Requested size: 345.0pt x 55.24556pt.
+
+Underfull \hbox (badness 2253) in paragraph at lines 275--277
+\OT1/cmr/m/n/14.4 (+20) Le r^^Sesultat du test de Lev-ene ( fig-ure 7[]) pour
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 275--277
+\OT1/cmr/m/n/14.4 (+20) fica-tivit^^Se statis-tique avec une valeur p tr^^Res f
+aible,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--277
+
+ []
+
+[14 <./residustransf.png> <./leneve.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+
+Underfull \hbox (badness 1874) in paragraph at lines 280--281
+[]\OT1/cmr/m/n/14.4 (+20) Les r^^Sesultats du test de Lev-ene in-diquent une
+ []
+
+
+Underfull \hbox (badness 4156) in paragraph at lines 280--281
+\OT1/cmr/m/n/14.4 (+20) Lorsque l'hypoth^^Rese d'homosc^^Sedasticit^^Se est vio
+l^^See,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 290--292
+\OT1/cmr/m/n/14.4 (+20) En analysant les co^^Sefficients de corr^^Selation et l
+es
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 290--292
+\OT1/cmr/m/n/14.4 (+20) graphiques de dis-per-sion, nous pour-rons iden-ti-fier
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--292
+
+ []
+
+<codecorr.png, id=81, 991.45406pt x 565.36218pt>
+File: codecorr.png Graphic file (type png)
+<use codecorr.png>
+Package pdftex.def Info: codecorr.png  used on input line 297.
+(pdftex.def)             Requested size: 345.0pt x 196.73236pt.
+<correlation_AJOUPA_BOUILLON.png, id=82, 481.8pt x 481.8pt>
+File: correlation_AJOUPA_BOUILLON.png Graphic file (type png)
+<use correlation_AJOUPA_BOUILLON.png>
+Package pdftex.def Info: correlation_AJOUPA_BOUILLON.png  used on input line 30
+5.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 1931) in paragraph at lines 306--306
+[]\OT1/cmr/m/n/10 (+20) Figure 9: cor-re-la-tion AJOUPA
+ []
+
+<correlation_BASSE-POINTE.png, id=83, 481.8pt x 481.8pt>
+File: correlation_BASSE-POINTE.png Graphic file (type png)
+<use correlation_BASSE-POINTE.png>
+Package pdftex.def Info: correlation_BASSE-POINTE.png  used on input line 311.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 2608) in paragraph at lines 312--312
+[]\OT1/cmr/m/n/10 (+20) Figure 10: cor-re-la-tion BASSE-
+ []
+
+[16 <./codecorr.png>]
+<correlation_BELLEFONTAINE.png, id=88, 481.8pt x 481.8pt>
+File: correlation_BELLEFONTAINE.png Graphic file (type png)
+<use correlation_BELLEFONTAINE.png>
+Package pdftex.def Info: correlation_BELLEFONTAINE.png  used on input line 320.
+
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 2334) in paragraph at lines 321--321
+[]\OT1/cmr/m/n/10 (+20) Figure 11: cor-re-la-tion BELLE-
+ []
+
+<correlation_CARBET(LE).png, id=89, 481.8pt x 481.8pt>
+File: correlation_CARBET(LE).png Graphic file (type png)
+<use correlation_CARBET(LE).png>
+Package pdftex.def Info: correlation_CARBET(LE).png  used on input line 326.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+<correlation_CASE-PILOTE.png, id=90, 481.8pt x 481.8pt>
+File: correlation_CASE-PILOTE.png Graphic file (type png)
+<use correlation_CASE-PILOTE.png>
+Package pdftex.def Info: correlation_CASE-PILOTE.png  used on input line 335.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 5460) in paragraph at lines 336--336
+[]\OT1/cmr/m/n/10 (+20) Figure 13: cor-re-la-tion CASE-
+ []
+
+<correlation_DIAMANT(LE).png, id=91, 481.8pt x 481.8pt>
+File: correlation_DIAMANT(LE).png Graphic file (type png)
+<use correlation_DIAMANT(LE).png>
+Package pdftex.def Info: correlation_DIAMANT(LE).png  used on input line 341.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+<correlation_DUCOS.png, id=92, 481.8pt x 481.8pt>
+File: correlation_DUCOS.png Graphic file (type png)
+<use correlation_DUCOS.png>
+Package pdftex.def Info: correlation_DUCOS.png  used on input line 351.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+<correlation_LORRAIN(LE).png, id=93, 481.8pt x 481.8pt>
+File: correlation_LORRAIN(LE).png Graphic file (type png)
+<use correlation_LORRAIN(LE).png>
+Package pdftex.def Info: correlation_LORRAIN(LE).png  used on input line 357.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+[17 <./correlation_AJOUPA_BOUILLON.png (PNG copy)> <./correlation_BASSE-POINTE.
+png (PNG copy)> <./correlation_BELLEFONTAINE.png (PNG copy)> <./correlation_CAR
+BET(LE).png (PNG copy)> <./correlation_CASE-PILOTE.png (PNG copy)> <./correlati
+on_DIAMANT(LE).png (PNG copy)>]
+<correlation_GROS-MORNE.png, id=97, 481.8pt x 481.8pt>
+File: correlation_GROS-MORNE.png Graphic file (type png)
+<use correlation_GROS-MORNE.png>
+Package pdftex.def Info: correlation_GROS-MORNE.png  used on input line 366.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 4713) in paragraph at lines 367--367
+[]\OT1/cmr/m/n/10 (+20) Figure 17: cor-re-la-tion GROS-
+ []
+
+<correlation_LAMENTIN(LE).png, id=98, 481.8pt x 481.8pt>
+File: correlation_LAMENTIN(LE).png Graphic file (type png)
+<use correlation_LAMENTIN(LE).png>
+Package pdftex.def Info: correlation_LAMENTIN(LE).png  used on input line 372.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+<correlation_MORNE-ROUGE(LE).png, id=99, 481.8pt x 481.8pt>
+File: correlation_MORNE-ROUGE(LE).png Graphic file (type png)
+<use correlation_MORNE-ROUGE(LE).png>
+Package pdftex.def Info: correlation_MORNE-ROUGE(LE).png  used on input line 38
+2.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+<correlation_MORNE-VERT(LE).png, id=100, 481.8pt x 481.8pt>
+File: correlation_MORNE-VERT(LE).png Graphic file (type png)
+<use correlation_MORNE-VERT(LE).png>
+Package pdftex.def Info: correlation_MORNE-VERT(LE).png  used on input line 388
+.
+(pdftex.def)             Requested size: 93.15031pt x 93.1456pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 395--396
+
+ []
+
+[18 <./correlation_DUCOS.png (PNG copy)> <./correlation_LORRAIN(LE).png (PNG co
+py)> <./correlation_GROS-MORNE.png (PNG copy)> <./correlation_LAMENTIN(LE).png 
+(PNG copy)> <./correlation_MORNE-ROUGE(LE).png (PNG copy)> <./correlation_MORNE
+-VERT(LE).png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 399--400
+
+ []
+
+<clusters_parcelles.png, id=105, 526.8483pt x 324.9741pt>
+File: clusters_parcelles.png Graphic file (type png)
+<use clusters_parcelles.png>
+Package pdftex.def Info: clusters_parcelles.png  used on input line 404.
+(pdftex.def)             Requested size: 345.0pt x 212.80257pt.
+[19]
+<codecluster1.png, id=109, 1017.04968pt x 419.31656pt>
+File: codecluster1.png Graphic file (type png)
+<use codecluster1.png>
+Package pdftex.def Info: codecluster1.png  used on input line 411.
+(pdftex.def)             Requested size: 345.0pt x 142.23943pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--419
+
+ []
+
+[20 <./clusters_parcelles.png> <./codecluster1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 426--427
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
+
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 437--444
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--444
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--444
+
+ []
+
+[22] [23] (memoire_dorival.bbl [24
+
+]
+Underfull \hbox (badness 1270) in paragraph at lines 16--21
+[]\OT1/cmr/m/n/14.4 (+20) Charlotte R Dro-mard, Xavier Bod-iguel, Soazig
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 35--39
+\OT1/cmr/m/n/14.4 (+20) Sharabi Mag-gie Spark-man Kent Sharkey David
+ []
+
+[25
+
+]) [26] (memoire_dorival.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
+L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1351 strings out of 474485
- 23154 string characters out of 5742267
- 1934542 words of memory out of 5000000
- 23677 multiletter control sequences out of 15000+600000
- 561441 words of font info for 47 fonts, out of 8000000 for 9000
+ 4592 strings out of 474424
+ 75940 string characters out of 5742684
+ 1935496 words of memory out of 5000000
+ 26692 multiletter control sequences out of 15000+600000
+ 571632 words of font info for 178 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,930b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/pdorival/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb><C:/Users/pdorival/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/pdorival/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/pdorival/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/pdorival/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/pdorival
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on memoire_dorival.pdf (13 pages, 1249241 bytes).
+ 57i,12n,68p,1014b,298s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ETU\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm08
+00.pk> <C:\Users\ETU\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
+rm0600.pk> <C:\Users\ETU\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm0700.pk><C:/Users/ETU/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmbx10.pfb><C:/Users/ETU/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb><C:/Users/ETU/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/ETU/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ETU/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ETU/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/ETU/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/ETU/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on memoire_dorival.pdf (27 pages, 2060650 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 185 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41081 words of extra memory for PDF output out of 42996 (max. 10000000)
 

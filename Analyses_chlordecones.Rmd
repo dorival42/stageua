@@ -41,6 +41,7 @@ summary(new_db_chlordecone[, c("moyenne_pulviometrie","COMMU_LAB","mnt.expositio
 
 ```{r}
 
+
 donnees_groupees <- new_db_chlordecone %>%
   group_by(COMMU_LAB, Adresse_parcelle, Annee) %>%
   summarise(
@@ -292,9 +293,30 @@ modele <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt
 
 # Tracer le graphique Q-Q des résidus du modèle
 qqnorm(resid(modele))
-qqline(resid(modele))
+qqline(resid(modele),col = "red")
 
 ```
+```{r}
+# Charger les bibliothèques nécessaires
+library(ggplot2)
+
+# Ajuster le modèle de régression linéaire multiple
+modele <- lm(Taux_chlordecone ~ moyenne_pulviometrie + mnt.exposition_mean + mnt.ombrage_mean + mnt.pente_mean + mnt.tpi_mean, data = new_db_chlordecone)
+
+# Extraire les résidus du modèle
+residus <- resid(modele)
+
+# Tracer l'histogramme des résidus
+ggplot(data.frame(residus), aes(x = residus)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "blue", alpha = 0.7, color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Histogramme des Résidus du Modèle de Régression",
+       x = "Résidus",
+       y = "Densité") +
+  theme_minimal()
+
+```
+
 
 ```{r}
 # Calculer les résidus du modèle ANOVA
@@ -324,17 +346,61 @@ residus_transformes <- log(residus + 1)
 # Tracer l'histogramme des résidus transformés
 hist(residus_transformes, main = "Histogramme des résidus transformés", xlab = "Résidus transformés", ylab = "Fréquence")
 
+# Tracer l'histogramme des résidus
+ggplot(data.frame(residus_transformes), aes(x = residus_transformes)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "blue", alpha = 0.7, color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Histogramme des résidus transformés",
+       x = "Résidus",
+       y = "Densité") +
+  theme_minimal()
 
 
 ```
 ```{r}
 
-#install.packages("car")
+#install.packages("carData")
 library(car)
 library(carData)
 # Appliquer le test de Levene pour vérifier l'homoscédasticité des résidus transformés
 leveneTest(residus_transformes ~ COMMU_LAB, data = new_db_chlordecone)
 ```
+
+```{r}
+# Calcul des corrélations de Pearson
+correlations <- cor(new_db_chlordecone[, c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean")], use = "complete.obs")
+
+# Affichage des résultats de corrélation
+print(correlations)
+
+# Visualisation des relations par des graphiques de dispersion
+library(ggplot2)
+
+# Fonction pour créer des graphiques de dispersion avec une ligne de régression
+scatter_plot <- function(x, y, xlab, ylab) {
+  ggplot(new_db_chlordecone, aes_string(x = x, y = y)) +
+    geom_point(alpha = 0.3) +
+    geom_smooth(method = "lm", col = "red") +
+    labs(x = xlab, y = ylab) +
+    theme_minimal()
+}
+
+# Création des graphiques
+plot_list <- list(
+  scatter_plot("moyenne_pulviometrie", "Taux_chlordecone", "Moyenne Pulviométrie", "Taux de Chlordécone"),
+  scatter_plot("mnt.exposition_mean", "Taux_chlordecone", "Exposition Moyenne", "Taux de Chlordécone"),
+  scatter_plot("mnt.ombrage_mean", "Taux_chlordecone", "Ombrage Moyen", "Taux de Chlordécone"),
+  scatter_plot("mnt.pente_mean", "Taux_chlordecone", "Pente Moyenne", "Taux de Chlordécone"),
+  scatter_plot("mnt.tpi_mean", "Taux_chlordecone", "TPI Moyen", "Taux de Chlordécone")
+)
+
+# Affichage des graphiques
+for (plot in plot_list) {
+  print(plot)
+}
+
+```
+
 Le résultat du test de Levene pour l'homogénéité des variances indique une forte significativité statistique avec une valeur de test F de 214.9 et une valeur p très faible, inférieure à 2.2e-16 (ce qui signifie essentiellement que la valeur p est très proche de zéro).
 
 Cela suggère qu'il y a des différences significatives entre les variances des résidus entre les groupes (niveaux de la variable indépendante). En d'autres termes, l'hypothèse nulle d'homoscédasticité est rejetée, ce qui signifie que les variances des résidus ne sont pas constantes à travers tous les niveaux de la variable indépendante.
@@ -421,6 +487,11 @@ if (any(is.na(correlation_matrix))) {
     # Afficher le graphe de la matrice de corrélation
     corrplot(correlation_matrix, method = "circle", type = "upper", order = "hclust", 
              tl.col = "black", tl.srt = 45, title = paste("Corrélation -", commune))
+    
+        # Enregistrer le graphique dans le dossier "images"
+    filename <- paste("LATEXDEV/correlation_", commune, ".png", sep = "")
+    dev.copy(png, filename)
+    dev.off()
   }
 }
 
@@ -702,4 +773,83 @@ parcelles_contaminees <- new_db_chlordecone %>%
 print(parcelles_contaminees)
 
 ```
+
+
+```{r}
+# Créer un dossier "images" s'il n'existe pas déjà
+if (!file.exists("images")) {
+  dir.create("images")
+}
+
+# Parcourir chaque commune et créer et enregistrer le graphique de corrélation
+for (commune in unique_communes) {
+  commune_data <- new_db_chlordecone %>%
+    filter(COMMU_LAB == commune)
+  
+  if (nrow(commune_data) > 1) {  # Vérifier qu'il y a plus d'une ligne pour calculer la corrélation
+    correlation_matrix <- cor(commune_data[c("Taux_chlordecone", "moyenne_pulviometrie", "mnt.exposition_mean", "mnt.ombrage_mean", "mnt.pente_mean", "mnt.tpi_mean")], use = "complete.obs")
+    
+    if (any(is.na(correlation_matrix))) {
+      next  # Ignorer cette commune si la matrice de corrélation contient des NA
+    }
+    
+    # Afficher le graphe de la matrice de corrélation
+    corrplot(correlation_matrix, method = "circle", type = "upper", order = "hclust", 
+             tl.col = "black", tl.srt = 45, title = paste("Corrélation -", commune))
+    
+    # Enregistrer le graphique dans le dossier "images"
+    filename <- paste("images/correlation_", commune, ".png", sep = "")
+    dev.copy(png, filename)
+    dev.off()
+  }
+}
+
+```
+
+```{r}
+# Charger les bibliothèques nécessaires
+library(dplyr)
+library(cluster)
+library(factoextra)
+library(ggplot2)
+
+# Assurer que les données sont bien nettoyées
+data_clean <- new_db_chlordecone %>%
+  mutate(across(everything(), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .)))
+
+# Sélectionner les colonnes d'intérêt pour le clustering
+data_for_clustering <- data_clean %>%
+  select(Taux_chlordecone, moyenne_pulviometrie, mnt.exposition_mean, mnt.ombrage_mean, mnt.pente_mean, mnt.tpi_mean)
+
+# Normaliser les données
+data_normalized <- scale(data_for_clustering)
+
+# Appliquer le clustering K-means avec 3 clusters (par exemple)
+set.seed(123)  # Pour la reproductibilité
+kmeans_result <- kmeans(data_normalized, centers = 3, nstart = 25)
+
+# Ajouter les clusters aux données initiales
+data_clean$cluster <- kmeans_result$cluster
+
+# Visualiser les résultats
+fviz_cluster(kmeans_result, data = data_normalized, geom = "point",
+             ellipse.type = "convex", ggtheme = theme_minimal(),
+             main = "Clustering des parcelles selon le taux de chlordécone")
+
+# Afficher le nombre de parcelles dans chaque cluster
+table(data_clean$cluster)
+
+# Enregistrer la visualisation des clusters
+ggsave("LATEXDEV/clusters_parcelles.png")
+
+# Sauvegarder les résultats avec les clusters dans un fichier CSV
+write.csv(data_clean, "images/parcelles_clusters.csv", row.names = FALSE)
+
+# Afficher quelques lignes du résultat pour vérification
+head(data_clean)
+
+```
+
+
+
 

@@ -1,0 +1,51 @@
+\begin{thebibliography}{1}
+
+\bibitem{coulis2023contamination}
+Mathieu Coulis, Gael Senecal, Yoann Devriendt-Renault, Julien Parinet, Thierry
+  Gu{\'e}rin, and Lai-Ting Pak.
+\newblock Contamination du r{\'e}seau trophique du sol par la chlord{\'e}cone
+  d'un agro{\'e}cosyst{\`e}me bananier de martinique.
+\newblock 2023.
+
+\bibitem{documentR}
+TILMAN~M. DAVIES.
+\newblock {\em The Book of R}.
+\newblock William Pollock, 2016.
+
+\bibitem{dromard2016assessment}
+Charlotte~R Dromard, Xavier Bodiguel, Soazig Lemoine, Yolande Bouchon-Navaro,
+  Lionel Reynal, Emmanuel Thouard, and Claude Bouchon.
+\newblock Assessment of the contamination of marine fauna by chlordecone in
+  guadeloupe and martinique (lesser antilles).
+\newblock {\em Environmental Science and Pollution Research}, 23:73--80, 2016.
+
+\bibitem{millot2018comprendre}
+Ga{\"e}l Millot.
+\newblock {\em Comprendre et r{\'e}aliser les tests statistiques {\`a} l'aide
+  de R: manuel de biostatistique}.
+\newblock De Boeck Sup{\'e}rieur, 2018.
+
+\bibitem{o2002levene}
+Michael~E O'Neill and Ky~L Mathews.
+\newblock Levene tests of homogeneity of variance for general block and
+  treatment designs.
+\newblock {\em Biometrics}, 58(1):216--224, 2002.
+
+\bibitem{power}
+Michele Hart Michael Blythe Alex Buck Kesem Sharabi Maggie Sparkman Kent
+  Sharkey David Iseminger Mohit~Patel Paul~Inbar, Mona~Berdugo.
+\newblock Qu’est-ce que power bi ?
+\newblock {\em Microsoft Learn}, 2024.
+
+\bibitem{sanchez2022chlordecone}
+Wilfried Sanchez, Laure Mamy, Sophie Leenhardt, and St{\'e}phane Pesce.
+\newblock Chlord{\'e}cone et biodiversit{\'e} antillaise: une contamination aux
+  effets encore trop m{\'e}connus.
+\newblock {\em The Conversation}, 2022.
+
+\bibitem{statistic1}
+Larry Wasserman.
+\newblock {\em All of nonparametric statistics}.
+\newblock Springer Science+Business Media, Inc., 2006.
+
+\end{thebibliography}

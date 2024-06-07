@@ -1,15 +1,22 @@
 \contentsline {chapter}{Remerciements}{1}{}%
 \contentsline {chapter}{Introduction}{3}{}%
-\contentsline {chapter}{État des connaissances sur la dégradation du chlordécone dans les sols agricoles martiniquais.}{4}{}%
-\contentsline {section}{\numberline {0.1}Effets du chlordécone sur l'environnement et la santé humaine}{4}{}%
+\contentsline {chapter}{État des connaissances sur la dégradation du chlordécone dans les sols agricoles martiniquais}{4}{}%
 \contentsline {section}{Effets du chlordécone sur l'environnement et la santé humaine}{4}{}%
-\contentsline {section}{\numberline {0.2}Processus de dégradation du chlordécone}{4}{}%
-\contentsline {section}{\numberline {0.3}Facteurs environnementaux influençant la dégradation du chlordécone}{4}{}%
-\contentsline {section}{\numberline {0.4}Lacunes}{5}{}%
+\contentsline {section}{Processus de dégradation du chlordécone}{4}{}%
+\contentsline {section}{Facteurs environnementaux influençant la dégradation du chlordécone}{5}{}%
+\contentsline {section}{Lacunes}{5}{}%
+\contentsline {section}{Conclusion}{5}{}%
 \contentsline {chapter}{Méthodologie}{6}{}%
-\contentsline {section}{\numberline {0.5}Données utilisées}{6}{}%
 \contentsline {section}{Données utilisées}{6}{}%
-\contentsline {section}{\numberline {0.6}Méthodes analytiques}{6}{}%
-\contentsline {section}{\numberline {0.7}Logiciel et Packages Utilisés}{7}{}%
-\contentsline {section}{\numberline {0.8}Stratégies d'évaluation des résultats}{8}{}%
-\contentsline {section}{\numberline {0.9}Analyse statistiques descriptive}{9}{}%
+\contentsline {section}{Méthodes analytiques}{7}{}%
+\contentsline {section}{Logiciel et Packages Utilisés}{7}{}%
+\contentsline {section}{Stratégies d'évaluation des résultats}{8}{}%
+\contentsline {section}{Analyse statistiques descriptive}{9}{}%
+\contentsline {section}{Nombre de prélèvements de taux de chlordécone par commune.}{10}{}%
+\contentsline {section}{Identification des tendances principales dans la dégradation du chlordécone}{11}{}%
+\contentsline {section}{Visualisation des Corrélations}{16}{}%
+\contentsline {section}{Analyse Clustering}{19}{}%
+\contentsline {section}{Analyse des résultats}{21}{}%
+\contentsline {section}{Défis et limitations}{21}{}%
+\contentsline {chapter}{Conclusion}{24}{}%
+\contentsline {chapter}{Bibliography}{24}{}%
